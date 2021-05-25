@@ -10,4 +10,4 @@ Bloons Tower Defense: Bloons Tower Defense is a Tower Defense game played on a t
 
 Run Instructions: Open BTD.pde and click "Run".
 
-UML diagram: https://lucid.app/lucidchart/27494e65-7ad6-489b-84ae-2834bc3edbf3/edit?viewport_loc=-20%2C795%2C2250%2C1046%2CHWEp-vi-RSFO&invitationId=inv_6c4b5eb3-27da-4b2e-8d57-1264f001dbcc 
+UML diagram: ![image](https://user-images.githubusercontent.com/59585690/119550307-41039600-bd66-11eb-8c9e-cc5ed62ce853.png)
