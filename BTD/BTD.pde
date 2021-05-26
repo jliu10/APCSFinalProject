@@ -15,8 +15,19 @@ void setup() {
 
 void draw() {
   switch(page) {
+    case 3:
+      //background(150);
+      break;
     case 4:
       game1.run();
       break;
+  }
+}
+
+void mouseClicked() {
+  if(quit.getHovering()) {
+    println("quit pressed");
+    //quit.toggle();
+    //page = 3;
   }
 }
