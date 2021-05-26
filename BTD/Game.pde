@@ -6,7 +6,7 @@ public class Game {
   //ArrayList<Projectile> projectiles;
   
   Game() {
-    quit = new Button("QUIT", width/2, height/2, 100, 50, color(75, 245, 66), true);
+    quit = new Button("QUIT", width/2, height/2, 100, 50, color(184, 46, 0), true);
   }
   
   void run() {
@@ -21,4 +21,5 @@ public class Game {
   boolean isDone() {
     return done;
   }
+
 }
