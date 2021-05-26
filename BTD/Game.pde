@@ -5,12 +5,17 @@ public class Game {
   //ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   
+  Game() {
+    quit = new Button("QUIT", width/2, height/2, 100, 50, color(75, 245, 66), true);
+  }
+  
   void run() {
     display();
   }
   
   void display() {
     background(153, 227, 79);
+    quit.display();
   }
   
   boolean isDone() {
