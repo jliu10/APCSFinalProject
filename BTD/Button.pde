@@ -3,7 +3,7 @@ public class Button {
   float w, h;
   float[] pos;
   color buttonColor, textColor;
-  boolean clickable, hovering;
+  boolean active, hovering;
 
   Button(String text,
          float x, float y, float w, float h,
@@ -15,7 +15,7 @@ public class Button {
     pos = new float[]{x, y};
     buttonColor = c;
     textColor = WHITE;
-    clickable = canClick;
+    active = canClick;
   }
 
   void display() {
@@ -34,7 +34,7 @@ public class Button {
   }
 
   void hover() {
-    if(clickable) {
+    if(active) {
       if(Math.abs(mouseX - pos[0]) <= w/2 + 4 && Math.abs(mouseY - pos[1]) <= h/2 + 4) {
         if(!hovering) {
           hovering = true;
@@ -48,6 +48,14 @@ public class Button {
         textColor = WHITE;
       }
     }
+  }
+  
+  boolean getHovering() {
+    return hovering;
+  }
+  
+  void toggle() {
+    hovering = !hovering;
   }
 
 }
