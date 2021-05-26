@@ -15,6 +15,7 @@ public class Game {
   
   void display() {
     background(153, 227, 79);
+    testBlock.display();
     quit.display();
   }
   
