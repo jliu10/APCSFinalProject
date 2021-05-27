@@ -15,3 +15,4 @@ UML diagram: ![image](https://user-images.githubusercontent.com/59585690/1195503
 DEV LOG:
 - Justin 2021-05-25: Set up page system, created class Game with essentials
 - Justin 2021-05-26: Developed Button class
+- Srinath 2021-05-26: Developed Block class
