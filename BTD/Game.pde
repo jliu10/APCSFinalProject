@@ -1,39 +1,30 @@
 import java.util.*;
 
 public class Game {
-  int lives, money, difficulty, map;
+  int lives, money, difficulty;
   // Round currentRound;
   boolean done;
   //ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
-  ArrayDeque<Block> track1;
+  Track gameTrack;
   //Bloon testBloon;
   
-  Game(int diff) {
+  Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
-    track1 = new ArrayDeque<Block>();
+    gameTrack = new Track(map);
     difficulty = diff;
     quit = new Button("QUIT", width/2, height/2, 100, 50, color(184, 46, 0), true);
     lives = 100;
     money = 200;
-    Block testBlock = new Block(90, 100, 50, 100, 100);
-    bloons.add(new Bloon(testBlock, 0, false, false));
-    track1.add(testBlock);
     
-    Block testBlock1 = new Block(0, 100, 50, 100, 150);
-    testBlock.setNextBlock(testBlock1);
-    track1.add(testBlock1);
-    
-    Block testBlock2 = new Block(90, 100, 50, 200, 150);
-    testBlock1.setNextBlock(testBlock2);
-    track1.add(testBlock2);
+    bloons.add(new Bloon(gameTrack.getStart(), 0, false, false));
   }
   
   void run() {
     for(int i = 0; i < bloons.size(); i++) {
       Bloon b = bloons.get(i);
-      if(b.getCurrentBlock() == track1.getLast()) {
+      if(b.getCurrentBlock() == gameTrack.getLast()) {
         bloons.remove(b);
         lives--;
       }
@@ -44,7 +35,7 @@ public class Game {
   
   void display() {
     background(153, 227, 79);
-    for(Block b : track1) {
+    for(Block b : gameTrack.getDeque()) {
       b.display();
     }
     //testBlock.display();
