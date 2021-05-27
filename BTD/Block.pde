@@ -47,4 +47,12 @@ public class Block {
   float getWidth() {
     return wid;
   }
+  
+  float getX() {
+    return pos[0];
+  }
+  
+  float getY() {
+    return pos[1];
+  }
 }
