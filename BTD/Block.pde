@@ -11,7 +11,6 @@ public class Block {
     pos = new float[2];
     pos[0] = xcor;
     pos[1] = ycor;
-    nextBlock = null;
   }
   
   void display() {
