@@ -70,23 +70,21 @@ public class Game {
   }
   
   void buttonFunctions() {
-    if(quit.getHovering()) {
+    if(quit.getActive() && quit.getHovering()) {
       println("quit pressed");
       //quit.toggle();
       //page = 3;
     }
-    if(pause.getActive() && pause.getHovering()) {
-      println("pause pressed");
+    else if(pause.getActive() && pause.getHovering()) {
       lastSpeed = speed;
       speed = 0;
       pause.toggle();
       resume.toggle();
     }
-    if(resume.getActive() && resume.getHovering()) {
-      println("resume pressed");
+    else if(!pause.getActive() && resume.getHovering()) {
       speed = lastSpeed;
-      resume.toggle();
       pause.toggle();
+      resume.toggle();
     }
   }
 
