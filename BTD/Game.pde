@@ -4,6 +4,7 @@ public class Game {
   int lives, money, difficulty;
   // Round currentRound;
   boolean done;
+  float speed, lastSpeed;
   //ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
@@ -13,8 +14,12 @@ public class Game {
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
     gameTrack = new Track(map);
+    speed = 1;
+    lastSpeed = 1;
     difficulty = diff;
-    quit = new Button("QUIT", width/2, height/2, 100, 50, color(184, 46, 0), true);
+    quit = new Button("QUIT", width - 55, height - 30, 100, 50, color(184, 46, 0), true);
+    pause = new Button("PAUSE", width - 180, height - 30, 130, 50, color(150), true);
+    resume = new Button("PLAY", width - 180, height - 30, 130, 50, color(150), false);
     lives = 100;
     money = 200;
     
@@ -42,13 +47,22 @@ public class Game {
     for(Bloon b : bloons) {
       b.display();
     }
+    
+    rectMode(CORNERS);
+    noStroke();
+    fill(52, 146, 235);
+    rect(width, height, width - 251, 0);
+    
     quit.display();
+    pause.display();
+    resume.display();
     
     textAlign(LEFT);
     textSize(24);
-    fill(0);
-    text("Lives: " + lives, 0, 25);
-    text("Money: $" + money, 0, 50);
+    fill(255);
+    text("Round: ", width - 250, 25);
+    text("Lives: " + lives, width - 250, 50);
+    text("Money: $" + money, width - 250, 75);
   }
   
   boolean isDone() {
@@ -60,6 +74,19 @@ public class Game {
       println("quit pressed");
       //quit.toggle();
       //page = 3;
+    }
+    if(pause.getActive() && pause.getHovering()) {
+      println("pause pressed");
+      lastSpeed = speed;
+      speed = 0;
+      pause.toggle();
+      resume.toggle();
+    }
+    if(resume.getActive() && resume.getHovering()) {
+      println("resume pressed");
+      speed = lastSpeed;
+      resume.toggle();
+      pause.toggle();
     }
   }
 
