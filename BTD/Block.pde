@@ -3,16 +3,14 @@ public class Block {
   float len, wid;
   float[] pos;
   Block nextBlock;
-  boolean last;
   
-  Block(int dir, float blockLen, float blockWid, float xcor, float ycor, boolean isLast) {
+  Block(int dir, float blockLen, float blockWid, float xcor, float ycor) {
     direction = dir;
     len = blockLen;
     wid = blockWid;
     pos = new float[2];
     pos[0] = xcor;
     pos[1] = ycor;
-    last = isLast;
     nextBlock = null;
   }
   
@@ -34,10 +32,6 @@ public class Block {
   
   void setNextBlock(Block next) {
     nextBlock = next;
-  }
-  
-  boolean isLast() {
-    return last;
   }
   
   float getLength() {
