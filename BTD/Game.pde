@@ -4,12 +4,17 @@ public class Game {
   boolean done;
   //ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
+  Block testBlock;
+  Bloon testBloon;
   
   Game(int diff) {
     difficulty = diff;
     quit = new Button("QUIT", width/2, height/2, 100, 50, color(184, 46, 0), true);
     lives = 100;
     money = 200;
+    // testBlock = new Block(90, 100, 50, 100, 100, false);
+    testBlock = new Block(90, 100, 50, 100, 100, false);
+    testBloon = new Bloon(testBlock, 0, false, false);
   }
   
   void run() {
@@ -18,6 +23,7 @@ public class Game {
   
   void display() {
     background(153, 227, 79);
+    testBloon.display();
     testBlock.display();
     quit.display();
     
