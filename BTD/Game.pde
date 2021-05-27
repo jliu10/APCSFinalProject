@@ -23,7 +23,7 @@ public class Game {
     lives = 100;
     money = 200;
     
-    bloons.add(new Bloon(gameTrack.getStart(), 0, false, false));
+    bloons.add(new Bloon(gameTrack.getStart(), 0, false));
   }
   
   void run() {
