@@ -23,8 +23,8 @@ public class Game {
   
   void display() {
     background(153, 227, 79);
-    testBloon.display();
     testBlock.display();
+    testBloon.display();
     quit.display();
     
     textAlign(LEFT);
