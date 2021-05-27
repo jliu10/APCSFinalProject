@@ -57,7 +57,11 @@ public class Bloon {
   }
   
   void move() {
-    if(pos[0] == currentBlock.getNextBlock().getX() && pos[1] == currentBlock.getNextBlock().getY()) {
+    float xDiff = pos[0] - currentBlock.getNextBlock().getX();
+    float yDiff = pos[1] - currentBlock.getNextBlock().getY();
+    if(xDiff*xDiff + yDiff*yDiff <= 1) {
+      pos[0] = currentBlock.getNextBlock().getX();
+      pos[1] = currentBlock.getNextBlock().getY();
       changeToNextBlock();
     }
     /*
