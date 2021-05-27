@@ -87,5 +87,9 @@ public class Game {
       resume.toggle();
     }
   }
+  
+  float getSpeed() {
+    return speed;
+  }
 
 }
