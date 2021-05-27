@@ -69,9 +69,9 @@ public class Bloon {
        Math.abs(currentBlock.getDirection() - currentBlock.getNextBlock().getDirection()) == 270) {
        
      }
-     */
-    pos[0] += speed * cos(radians(currentBlock.getDirection()));
-    pos[1] += speed * sin(radians(currentBlock.getDirection()));
+    */
+    pos[0] += speed * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
+    pos[1] += speed * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
   }
   
   void display() {
