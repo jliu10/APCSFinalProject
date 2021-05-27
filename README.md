@@ -14,5 +14,5 @@ UML diagram: ![image](https://user-images.githubusercontent.com/43016865/1197475
 
 DEV LOG:
 - Justin 2021-05-25: Set up page system, created class Game with essentials
-- Justin 2021-05-26: Developed Button class
+- Justin 2021-05-26: Created and developed classes Button and Bloon; developed class Game
 - Srinath 2021-05-26: Developed Block class
