@@ -29,6 +29,11 @@ public class Bloon {
   }
   
   void changeToNextBlock() {
+    currentBlock = currentBlock.getNextBlock();
+  }
+  
+  Block getCurrentBlock() {
+    return currentBlock;
   }
   
   boolean isCamo() {
@@ -52,8 +57,17 @@ public class Bloon {
   }
   
   void move() {
-    pos[0] += speed * cos(radians(currentBlock.getDirection())) * speed;
-    pos[1] += speed * sin(radians(currentBlock.getDirection())) * speed;
+    if(pos[0] == currentBlock.getNextBlock().getX() && pos[1] == currentBlock.getNextBlock().getY()) {
+      changeToNextBlock();
+    }
+    /*
+    if(Math.abs(currentBlock.getDirection() - currentBlock.getNextBlock().getDirection()) == 90 ||
+       Math.abs(currentBlock.getDirection() - currentBlock.getNextBlock().getDirection()) == 270) {
+       
+     }
+     */
+    pos[0] += speed * cos(radians(currentBlock.getDirection()));
+    pos[1] += speed * sin(radians(currentBlock.getDirection()));
   }
   
   void display() {
