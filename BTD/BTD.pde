@@ -1,7 +1,6 @@
 int page;
 Game game1;
 Button quit, pause;
-ArrayList<Bloon> bloons;
 
 color WHITE = color(255);
 color BLACK = color(0);
@@ -26,9 +25,5 @@ void draw() {
 }
 
 void mouseClicked() {
-  if(quit.getHovering()) {
-    println("quit pressed");
-    //quit.toggle();
-    //page = 3;
-  }
+  game1.buttonFunctions();
 }
