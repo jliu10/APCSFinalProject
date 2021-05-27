@@ -29,7 +29,6 @@ public class Button {
   
       textAlign(CENTER);
       fill(textColor);
-      // float ts = .8 * y2h;
       textSize(.8 * h);
       text(message, pos[0], .4 * h - 4 + pos[1]);
     }
