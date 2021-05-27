@@ -8,7 +8,7 @@ public class Bloon {
   
   Bloon(Block b, int type, boolean isCamo, boolean isLead) {
     currentBlock = b;
-    pos = new float[]{b.getLength()/2, b.getWidth()/2};
+    pos = new float[]{b.getX(), b.getY()};
     bloonType = type;
     camo = isCamo;
     lead = isLead;
