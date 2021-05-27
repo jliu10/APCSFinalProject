@@ -11,7 +11,7 @@ void setup() {
   // background(0,225,0);
   //page = 0;//if page is 0 then main menu, 2 is instructions, 3 is map selection
   page = 4;//page 4 is the first map/game
-  game1 = new Game();
+  game1 = new Game(0);
   testBlock = new Block(90, 100, 50, 100, 100, false);
 }
 
