@@ -43,7 +43,7 @@ public class Bloon {
     speed = n;
   }
   
-  void pop() {
+  void bloonPop() {
     bloonType--;
   }
   
