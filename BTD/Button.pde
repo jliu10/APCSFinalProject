@@ -19,34 +19,34 @@ public class Button {
   }
 
   void display() {
-    hover();
-    rectMode(CENTER);
-    fill(buttonColor);
-    stroke(0);
-    strokeWeight(2);
-    rect(pos[0], pos[1], w, h, 8);
-
-    textAlign(CENTER);
-    fill(textColor);
-    // float ts = .8 * y2h;
-    textSize(.8 * h);
-    text(message, pos[0], .4 * h - 4 + pos[1]);
+    if(active) {
+      hover();
+      rectMode(CENTER);
+      fill(buttonColor);
+      stroke(0);
+      strokeWeight(2);
+      rect(pos[0], pos[1], w, h, 8);
+  
+      textAlign(CENTER);
+      fill(textColor);
+      // float ts = .8 * y2h;
+      textSize(.8 * h);
+      text(message, pos[0], .4 * h - 4 + pos[1]);
+    }
   }
 
   void hover() {
-    if(active) {
-      if(Math.abs(mouseX - pos[0]) <= w/2 + 4 && Math.abs(mouseY - pos[1]) <= h/2 + 4) {
-        if(!hovering) {
-          hovering = true;
-          textColor = buttonColor;
-          buttonColor = WHITE;
-        }
+    if(Math.abs(mouseX - pos[0]) <= w/2 + 4 && Math.abs(mouseY - pos[1]) <= h/2 + 4) {
+      if(!hovering) {
+        hovering = true;
+        textColor = buttonColor;
+        buttonColor = WHITE;
       }
-      else if(hovering) {
-        hovering = false;
-        buttonColor = textColor;
-        textColor = WHITE;
-      }
+    }
+    else if(hovering) {
+      hovering = false;
+      buttonColor = textColor;
+      textColor = WHITE;
     }
   }
   
@@ -55,7 +55,11 @@ public class Button {
   }
   
   void toggle() {
-    hovering = !hovering;
+    active = !active;
+  }
+  
+  boolean getActive() {
+    return active;
   }
 
 }
