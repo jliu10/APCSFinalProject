@@ -4,14 +4,13 @@ public class Bloon {
   int bloonType;
   float speed, size;
   color bloonColor;
-  boolean camo, lead;
+  boolean camo;
   
-  Bloon(Block b, int type, boolean isCamo, boolean isLead) {
+  Bloon(Block b, int type, boolean isCamo) {
     currentBlock = b;
     pos = new float[]{b.getX(), b.getY()};
     bloonType = type;
     camo = isCamo;
-    lead = isLead;
     switch(type) {
       case 0: //red bloon
         bloonColor = color(227, 0, 0);
@@ -38,10 +37,6 @@ public class Bloon {
   
   boolean isCamo() {
     return camo;
-  }
-  
-  boolean isLead() {
-    return lead;
   }
   
   void setSpeed(float n) {
