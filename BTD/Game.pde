@@ -16,11 +16,11 @@ public class Game {
     speed = 1;
     lastSpeed = 1;
     difficulty = diff;
-    quit = new Button("QUIT", width - 55, height - 30, 100, 50, color(184, 46, 0), true);
-    quitYes = new Button("Yes", width - 175, height - 30, 80, 50, color(184, 46, 0), false);
-    quitNo = new Button("No", width - 70, height - 30, 80, 50, BLUE, false);
-    pause = new Button("PAUSE", width - 180, height - 30, 130, 50, color(150), true);
-    resume = new Button("PLAY", width - 180, height - 30, 130, 50, color(150), false);
+    quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
+    quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
+    quitNo = new Button("No", width - 70, height - 30, 80, 50, 40, BLUE, false);
+    pause = new Button("PAUSE", width - 180, height - 30, 130, 50, 40, color(150), true);
+    resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
     lives = 100;
     money = 200;
     
