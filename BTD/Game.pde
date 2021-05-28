@@ -3,13 +3,12 @@ import java.util.*;
 public class Game {
   int lives, money, difficulty;
   // Round currentRound;
-  boolean done;
+  boolean done, quitConfirm, wasPaused;
   float speed, lastSpeed;
   //ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
   Track gameTrack;
-  //Bloon testBloon;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
@@ -18,6 +17,8 @@ public class Game {
     lastSpeed = 1;
     difficulty = diff;
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, color(184, 46, 0), true);
+    quitYes = new Button("Yes", width - 175, height - 30, 80, 50, color(184, 46, 0), false);
+    quitNo = new Button("No", width - 70, height - 30, 80, 50, BLUE, false);
     pause = new Button("PAUSE", width - 180, height - 30, 130, 50, color(150), true);
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, color(150), false);
     lives = 100;
@@ -49,8 +50,9 @@ public class Game {
     }
     
     rectMode(CORNERS);
-    noStroke();
-    fill(52, 146, 235);
+    fill(BLUE);
+    stroke(0);
+    strokeWeight(2);
     rect(width, height, width - 251, 0);
     
     quit.display();
@@ -63,6 +65,22 @@ public class Game {
     text("Round: ", width - 250, 25);
     text("Lives: " + lives, width - 250, 50);
     text("Money: $" + money, width - 250, 75);
+    
+    if(quitConfirm) {
+      fill(BLUE);
+      stroke(0);
+      strokeWeight(2);
+      rectMode(CORNERS);
+      rect(width, height, width - 250, height - 90);
+      fill(255);
+      textAlign(CENTER);
+      textSize(12);
+      text("Are you sure you want to quit?", width - 125, height - 65);
+      if(!quitYes.getActive()) quitYes.toggle();
+      if(!quitNo.getActive()) quitNo.toggle();
+      quitYes.display();
+      quitNo.display();
+    }
   }
   
   boolean isDone() {
@@ -71,9 +89,26 @@ public class Game {
   
   void buttonFunctions() {
     if(quit.getActive() && quit.getHovering()) {
+      quitConfirm = true;
       println("quit pressed");
-      //quit.toggle();
-      //page = 3;
+      quit.toggle();
+      if(pause.getActive()) pause.toggle();
+      else resume.toggle();
+    }
+    else if(quitYes.getActive() && quitYes.getHovering()) {
+      for(Button b : gameButtons) {
+        if(b.getActive()) b.toggle();
+      }
+      page = 2;
+      // toggle off all buttons
+    }
+    else if(quitNo.getActive() && quitNo.getHovering()) {
+      quitConfirm = false;
+      quit.toggle();
+      quitYes.toggle();
+      quitNo.toggle();
+      if(wasPaused) resume.toggle();
+      else pause.toggle();
     }
     else if(pause.getActive() && pause.getHovering()) {
       lastSpeed = speed;
