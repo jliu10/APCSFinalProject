@@ -1,17 +1,18 @@
 public class Button {
   String message;
-  float w, h;
+  float w, h, size;
   float[] pos;
   color buttonColor, textColor;
   boolean active, hovering;
 
   Button(String text,
-         float x, float y, float w, float h,
+         float x, float y, float w, float h, float s,
          color c,
          boolean canClick) {
     message = text;
     this.w = w;
     this.h = h;
+    size = s;
     pos = new float[]{x, y};
     buttonColor = c;
     textColor = WHITE;
@@ -29,7 +30,7 @@ public class Button {
   
       textAlign(CENTER);
       fill(textColor);
-      textSize(.8 * h);
+      textSize(size);
       text(message, pos[0], .4 * h - 4 + pos[1]);
     }
   }
