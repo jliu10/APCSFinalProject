@@ -100,6 +100,9 @@ public class Game {
         if(b.getActive()) b.toggle();
       }
       page = 2;
+      for(Button b : mapSelectionButtons) {
+        b.toggle();
+      }
       // toggle off all buttons
     }
     else if(quitNo.getActive() && quitNo.getHovering()) {
