@@ -1,6 +1,6 @@
 int page, difficulty, map;
-Game currentGame, game1;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions;
+Game currentGame;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
@@ -12,8 +12,8 @@ color BLUE = color(52, 146, 235);
 
 void setup() {
   size(1050, 700);
-  difficulty = -1;
-  map = -1;
+  difficulty = 0;
+  map = 0;
   map1 = new Button("MAP1", width/2, height/2, 300, 100, 80, BLUE, false); // change to flase
   mainMenu = new Button("BACK", 110, 60, 200, 100, 80, BLUE, false); // change to false
   mapSelectionButtons.add(map1);
@@ -24,10 +24,9 @@ void setup() {
   menuButtons.add(play);
   menuButtons.add(instructions);
   
-  //page = 0;//if page is 0 then main menu, 1 is instructions, 2 is map selection
+  //if page is 0 then main menu, 1 is instructions, 2 is map selection
   page = 0;//page 3 is the first map/game
-  game1 = new Game(0,0);
-  currentGame = game1;
+  currentGame = new Game(0, 0);
   
   gameButtons.add(quit);
   gameButtons.add(pause);
@@ -101,6 +100,8 @@ void mouseClicked() {
         for(Button b : mapSelectionButtons) {
           b.toggle();
         }
+        map = 0;
+        currentGame = new Game(difficulty, map);
         page = 3;
       }
       else if(mainMenu.getHovering()) {
