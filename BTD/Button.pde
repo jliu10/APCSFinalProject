@@ -31,7 +31,7 @@ public class Button {
       textAlign(CENTER);
       fill(textColor);
       textSize(size);
-      text(message, pos[0], .4 * h - 4 + pos[1]);
+      text(message, pos[0], .5 * size - 4 + pos[1]);
     }
   }
 
