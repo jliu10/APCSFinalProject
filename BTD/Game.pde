@@ -21,6 +21,7 @@ public class Game {
     quitNo = new Button("No", width - 70, height - 30, 80, 50, 40, BLUE, false);
     pause = new Button("PAUSE", width - 180, height - 30, 130, 50, 40, color(150), true);
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
+    startBattle = new Button("START BATTLE", width - 125, height - 100, 220, 50, 25, color(0, 220, 0), true);
     lives = 100;
     money = 200;
     
@@ -58,6 +59,7 @@ public class Game {
     quit.display();
     pause.display();
     resume.display();
+    startBattle.display();
     
     textAlign(LEFT);
     textSize(24);
@@ -123,6 +125,10 @@ public class Game {
       speed = lastSpeed;
       pause.toggle();
       resume.toggle();
+    }
+    else if(startBattle.getActive() && startBattle.getHovering()) {
+      println("battle started");
+      startBattle.toggle();
     }
   }
   
