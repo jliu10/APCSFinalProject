@@ -135,5 +135,8 @@ public class Game {
   float getSpeed() {
     return speed;
   }
-
+  void sellTower(Tower t) {
+    money += (int)(t.getValue()*6/10);
+    t = null;
+  }
 }
