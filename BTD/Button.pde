@@ -61,5 +61,12 @@ public class Button {
   boolean getActive() {
     return active;
   }
+  
+  void setX(float x) {
+    pos[0] = x;
+  }
+  
+  void setY(float y) {
+  }
 
 }
