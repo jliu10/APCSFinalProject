@@ -38,4 +38,27 @@ public class BuyButton extends Button {
     }
   }
   
+  void hover() {
+    // mouseX > width - 250 && mouseY > 100 && mouseY < height - 130
+    if(mouseX > width - 250 && mouseY > 100 && mouseY < height - 130) {
+      if(Math.abs(mouseX - pos[0]) <= w/2 + 4 && Math.abs(mouseY - pos[1]) <= h/2 + 4) {
+        if(!hovering) {
+          hovering = true;
+          textColor = buttonColor;
+          buttonColor = WHITE;
+        }
+      }
+      else if(hovering) {
+        hovering = false;
+        buttonColor = textColor;
+        textColor = WHITE;
+      }
+    }
+    else if(hovering) {
+      hovering = false;
+      buttonColor = textColor;
+      textColor = WHITE;
+    }
+  }
+  
 }
