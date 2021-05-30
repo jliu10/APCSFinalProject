@@ -26,12 +26,13 @@ public class Game {
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
     startBattle = new Button("START BATTLE", width - 125, height - 100, 220, 50, 25, color(0, 220, 0), true);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
+    buyIceTower = new BuyButton("Ice", "$425", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
     
     lives = 100;
     money = 650;
     
     buttonQ.add(buyDartTower);
-    buttonQ.add(new BuyButton("Dart2", "$170", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, dartImage));
+    buttonQ.add(buyIceTower);
     buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
     bloons.add(new Bloon(gameTrack.getStart(), 0, false));
@@ -173,7 +174,6 @@ public class Game {
   }
   
   void scrollFunctions(int e) {
-    // e > 0 means down; vice versa
     if(mouseX > width - 250 && mouseY > 100 && mouseY < height - 130) {
       if(e < 0 && buttonQ.getFirst().getY() < 155) { // scrolling up
           for(Button b : buttonQ) {
