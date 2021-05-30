@@ -62,11 +62,20 @@ public class Button {
     return active;
   }
   
+  float getX() {
+    return pos[0];
+  }
+  
+  float getY() {
+    return pos[1];
+  }
+  
   void setX(float x) {
     pos[0] = x;
   }
   
   void setY(float y) {
+    pos[1] = y;
   }
 
 }
