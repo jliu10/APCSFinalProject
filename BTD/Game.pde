@@ -71,7 +71,6 @@ public class Game {
       b.display();
     }
     
-    //towerSelectArea.display();
     rectMode(CORNERS);
     fill(0,0,0,0);
     stroke(0);
@@ -120,6 +119,11 @@ public class Game {
   
   float getSpeed() {
     return speed;
+  }
+  
+  void sellTower(Tower t) {
+    money += (int)(t.getValue()*6/10);
+    t = null;
   }
   
   void buttonFunctions() {
@@ -181,8 +185,5 @@ public class Game {
       }
     }
   }
-  void sellTower(Tower t) {
-    money += (int)(t.getValue()*6/10);
-    t = null;
-  }
+  
 }
