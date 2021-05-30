@@ -181,5 +181,8 @@ public class Game {
       }
     }
   }
-
+  void sellTower(Tower t) {
+    money += (int)(t.getValue()*6/10);
+    t = null;
+  }
 }
