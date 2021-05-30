@@ -173,14 +173,14 @@ public class Game {
     // e > 0 means down; vice versa
     if(mouseX > width - 250 && mouseY > 100 && mouseY < height - 130) {
       println(e);
-      if(e < 0 && buttonQ.getFirst().getY() > 155) {
+      if(e < 0 && buttonQ.getFirst().getY() < 155) {
         for(Button b : buttonQ) {
-          b.setY(b.getY() + e);
+          b.setY(b.getY() - e);
         }
       }
       else if(e > 0 && buttonQ.getLast().getY() > height - 185) {
         for(Button b : buttonQ) {
-          b.setY(b.getY() + e);
+          b.setY(b.getY() - e);
         }
       }
     }
