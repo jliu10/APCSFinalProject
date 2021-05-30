@@ -9,23 +9,33 @@ public class Game {
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
   Track gameTrack;
+  ArrayDeque<Button> buttonQ;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
+    buttonQ = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     speed = 1;
     lastSpeed = 1;
     difficulty = diff;
+    
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
     quitNo = new Button("No", width - 70, height - 30, 80, 50, 40, BLUE, false);
     pause = new Button("PAUSE", width - 180, height - 30, 130, 50, 40, color(150), true);
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
     startBattle = new Button("START BATTLE", width - 125, height - 100, 220, 50, 25, color(0, 220, 0), true);
+    buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
+    
     lives = 100;
-    money = 200;
+    money = 650;
+    
+    buttonQ.add(buyDartTower);
+    buttonQ.add(new BuyButton("Dart2", "$170", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, dartImage));
+    buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
     bloons.add(new Bloon(gameTrack.getStart(), 0, false));
+
   }
   
   void run() {
@@ -45,7 +55,6 @@ public class Game {
     for(Block b : gameTrack.getDeque()) {
       b.display();
     }
-    //testBlock.display();
     for(Bloon b : bloons) {
       b.display();
     }
@@ -56,6 +65,27 @@ public class Game {
     strokeWeight(2);
     rect(width, height, width - 251, 0);
     
+    // TOWER SELECTION STUFF HERE
+    //buyDartTower.display();
+    for(Button b : buttonQ) {
+      b.display();
+    }
+    
+    //towerSelectArea.display();
+    rectMode(CORNERS);
+    fill(0,0,0,0);
+    stroke(0);
+    strokeWeight(2);
+    //noStroke();
+    //noFill();
+    rect(width - 250, 100, width, 570);
+    
+    rectMode(CORNERS);
+    fill(BLUE);
+    //noStroke();
+    rect(width - 250, 0, width, 100);
+    rect(width - 250, height - 130, width, height);
+    
     quit.display();
     pause.display();
     resume.display();
@@ -64,9 +94,8 @@ public class Game {
     textAlign(LEFT);
     textSize(24);
     fill(255);
-    text("Round: ", width - 250, 25);
-    text("Lives: " + lives, width - 250, 50);
-    text("Money: $" + money, width - 250, 75);
+    textLeading(25);
+    text("Round: \nLives: " + lives + "\nMoney: $" + money, width - 245, 25);
     
     if(quitConfirm) {
       fill(BLUE);
@@ -87,6 +116,10 @@ public class Game {
   
   boolean isDone() {
     return done;
+  }
+  
+  float getSpeed() {
+    return speed;
   }
   
   void buttonFunctions() {
@@ -132,8 +165,21 @@ public class Game {
     }
   }
   
-  float getSpeed() {
-    return speed;
+  void scrollFunctions(int e) {
+    // e > 0 means down; vice versa
+    if(mouseX > width - 250 && mouseY > 100 && mouseY < height - 130) {
+      println(e);
+      if(e < 0 && buttonQ.getFirst().getY() > 155) {
+        for(Button b : buttonQ) {
+          b.setY(b.getY() + e);
+        }
+      }
+      else if(e > 0 && buttonQ.getLast().getY() > height - 185) {
+        for(Button b : buttonQ) {
+          b.setY(b.getY() + e);
+        }
+      }
+    }
   }
 
 }
