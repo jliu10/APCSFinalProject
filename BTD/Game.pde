@@ -167,18 +167,20 @@ public class Game {
       println("battle started");
       startBattle.toggle();
     }
+    else if(buyDartTower.getHovering()) {
+      println("bought dart tower");
+    }
   }
   
   void scrollFunctions(int e) {
     // e > 0 means down; vice versa
     if(mouseX > width - 250 && mouseY > 100 && mouseY < height - 130) {
-      println(e);
-      if(e < 0 && buttonQ.getFirst().getY() < 155) {
-        for(Button b : buttonQ) {
-          b.setY(b.getY() - e);
-        }
+      if(e < 0 && buttonQ.getFirst().getY() < 155) { // scrolling up
+          for(Button b : buttonQ) {
+            b.setY(b.getY() - e);
+          }
       }
-      else if(e > 0 && buttonQ.getLast().getY() > height - 185) {
+      else if(e > 0 && buttonQ.getLast().getY() > height - 185) { // scrolling down
         for(Button b : buttonQ) {
           b.setY(b.getY() - e);
         }
