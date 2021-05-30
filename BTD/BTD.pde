@@ -1,11 +1,11 @@
 int page, difficulty, map;
 Game currentGame;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
 ArrayList<Button> instructionsButtons = new ArrayList<Button>();
-PImage dartImage;
+PImage dartImage, iceImage;
 
 color WHITE = color(255);
 color BLACK = color(0);
@@ -38,6 +38,7 @@ void setup() {
   gameButtons.add(buyDartTower);
   
   dartImage = loadImage("Dart.png");
+  iceImage = loadImage("Ice.png");
 }
 
 void draw() {
