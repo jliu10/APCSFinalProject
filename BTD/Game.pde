@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class Game {
-  int lives, money, difficulty;
+  int lives, money, difficulty, placeTower;
   // Round currentRound;
-  boolean done, quitConfirm, wasPaused;
+  boolean done, quitConfirm, wasPaused, placing, valid;
   float speed, lastSpeed;
   ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
@@ -50,6 +50,26 @@ public class Game {
         lives--;
       }
     }
+    
+    
+    float r = 0;
+    switch(placeTower) { // tower radius
+      case 0:
+        break;
+      case 1:
+        r = 20;
+        break;
+    }
+    valid = true;
+    for(Block b : gameTrack.getDeque()) {
+      if(abs(mouseX - b.getX()) <= b.getLength()/2 + r && abs(mouseY - b.getY()) <= b.getWidth()/2 + r) {
+        valid = false;
+      }
+    }
+    for(Tower t : towers) {
+      // invalid on towers
+    }
+    
     if(lives <= 0) done = true;
     display();
   }
@@ -65,6 +85,23 @@ public class Game {
     for(Tower t : towers) {
       t.display();
     }
+    
+    if(placing) {
+      if(mouseX < width - 250) {
+        switch(placeTower) {
+          case 0: // dart tower
+            break;
+          case 1: // ice tower
+            if(valid) fill(0, 0, 0, 100);
+            else fill(255, 0, 0, 100);
+            circle(mouseX, mouseY, 20);
+            noStroke();
+            circle(mouseX, mouseY, 300);
+            break;
+        }
+      }
+    }
+    
     rectMode(CORNERS);
     fill(BLUE);
     stroke(0);
@@ -132,7 +169,7 @@ public class Game {
     t = null;
   }
   
-  void buttonFunctions() {
+  void leftMB() {
     if(quit.getActive() && quit.getHovering()) {
       quitConfirm = true;
       println("quit pressed");
@@ -176,6 +213,26 @@ public class Game {
     else if(buyDartTower.getHovering()) {
       println("bought dart tower");
     }
+    else if(buyIceTower.getHovering() && money >= 425) {
+      println("bought ice tower");
+      placing = true;
+      placeTower = 1;
+    }
+    else if(placing && valid) {
+      placing = false;
+      switch(placeTower) {
+        case 0: // dart tower
+          break;
+        case 1: // ice tower
+          towers.add(new IceTower(mouseX, mouseY));
+          money -= 425;
+          break;
+      }
+    }
+  }
+  
+  void rightMB() {
+    placing = false;
   }
   
   void scrollFunctions(int e) {
