@@ -96,7 +96,7 @@ public class Game {
             else fill(255, 0, 0, 100);
             circle(mouseX, mouseY, 20);
             noStroke();
-            circle(mouseX, mouseY, 300);
+            circle(mouseX, mouseY, 200);
             break;
         }
       }
