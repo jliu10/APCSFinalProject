@@ -36,7 +36,7 @@ public class Game {
     buttonQ.add(buyIceTower);
     buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
-    bloons.add(new Bloon(gameTrack.getStart(), 0, false));
+    bloons.add(new Bloon(gameTrack.getStart(), 2, false));
     
     //Testing IceTower
     towers.add(new IceTower(525,350));
@@ -47,7 +47,7 @@ public class Game {
       Bloon b = bloons.get(i);
       if(b.getCurrentBlock() == gameTrack.getLast()) {
         bloons.remove(b);
-        lives--;
+        lives -= b.getType() + 1;
       }
     }
     
