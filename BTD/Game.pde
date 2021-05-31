@@ -39,7 +39,7 @@ public class Game {
     bloons.add(new Bloon(gameTrack.getStart(), 2, false));
     
     //Testing IceTower
-    towers.add(new IceTower(525,350));
+    //towers.add(new IceTower(525,350));
   }
   
   void run() {
@@ -94,6 +94,7 @@ public class Game {
           case 1: // ice tower
             if(valid) fill(0, 0, 0, 100);
             else fill(255, 0, 0, 100);
+            ellipseMode(RADIUS);
             circle(mouseX, mouseY, 20);
             noStroke();
             circle(mouseX, mouseY, 200);
