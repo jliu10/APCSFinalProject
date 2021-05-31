@@ -36,6 +36,7 @@ void setup() {
   gameButtons.add(quitNo);
   gameButtons.add(startBattle);
   gameButtons.add(buyDartTower);
+  gameButtons.add(buyIceTower);
   
   dartImage = loadImage("Dart.png");
   iceImage = loadImage("Ice.png");
