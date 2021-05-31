@@ -16,7 +16,7 @@ public class IceTower extends Tower{
     ellipseMode(RADIUS);
     if (active) {
       stroke(0,0);
-      fill(255,50);
+      fill(255,75);
       ellipse(position[0],position[1],range,range);
     }
     stroke(0);
