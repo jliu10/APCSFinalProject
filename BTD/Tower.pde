@@ -10,10 +10,14 @@ abstract class Tower {
   abstract void shoot();
   
   void select() {
-    selected = true;
+    if (mouseButton == 37 && dist(mouseX,mouseY, position[0], position[1]) < radius) {
+      selected = true;
+    }
   }
   void deselect() {
-    selected = false;
+    if (mouseButton == 37 && dist(mouseX,mouseY, position[0], position[1]) > range) {
+      selected = false;
+    }
   }
   void upgrade(int path) {
     if (upgrades[path] < 2) {
