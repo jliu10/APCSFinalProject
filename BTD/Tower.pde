@@ -37,4 +37,12 @@ abstract class Tower {
   float getValue() {
     return totalValue;
   }
+  
+  float[] getPos() {
+    return position;
+  }
+  
+  float getRad() {
+    return radius;
+  }
 }
