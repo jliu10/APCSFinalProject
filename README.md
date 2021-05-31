@@ -22,6 +22,7 @@ DEV LOG:
 - Justin 2021-05-27: Added side menu with functioning pause/resume button
 - Justin 2021-05-28: Added map selection, main menu, and instructions pages with navigation buttons
 - Srinath 2021-05-28: Created abstract class Tower
+- Justin 2021-05-29: Added "Start Battle" button
 - Srinath 2021-05-29: Created abstract class Projectile
 - Srinath 2021-05-30: Created sellTower function; created IceTower
 - Justin 2021-05-30: Added tower shop menu
