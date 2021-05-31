@@ -89,7 +89,12 @@ public class Bloon {
   void display() {
     switch(bloonType) {
       case 0: //red bloon
-        bloonColor = color(227, 0, 0);
+        if (FreezeCounter > 0) {
+          bloonColor = color(227, 50, 50);
+        }
+        else {
+          bloonColor = color(227, 0, 0);
+        }
         //speed = 1;
         break;
       case 1: //blue bloon
@@ -97,7 +102,12 @@ public class Bloon {
         //speed = 1.4;
         break;
       case 2: //green bloon
-        bloonColor = color(0, 227, 0);
+        if (FreezeCounter > 0) {
+          bloonColor = color(50, 227, 50);
+        }
+        else {
+          bloonColor = color(0, 227, 0);
+        }
         //speed = 1.8;
         break;
     }
@@ -106,7 +116,12 @@ public class Bloon {
     fill(bloonColor);
     stroke(0);
     strokeWeight(2);
-    ellipse(pos[0], pos[1], 25, 35);
     line(pos[0], pos[1] + 37/2, pos[0], pos[1] + 37/2 + 15);
+    ellipse(pos[0], pos[1], 25, 35);
+    if (FreezeCounter > 0) {
+      stroke(178,255,256);
+      fill(178,255,256);
+      arc(pos[0], pos[1], 25, 35, PI, 2*PI);
+    }
   }
 }
