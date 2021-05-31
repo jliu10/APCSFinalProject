@@ -122,9 +122,12 @@ void mouseClicked() {
         }
         break;
       case 3:
-        currentGame.buttonFunctions();
+        currentGame.leftMB();
         break;
     }
+  }
+  if(mouseButton == 39) {
+    currentGame.rightMB();
   }
 }
 
