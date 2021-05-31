@@ -5,7 +5,7 @@ public class Game {
   // Round currentRound;
   boolean done, quitConfirm, wasPaused;
   float speed, lastSpeed;
-  //ArrayList<Tower> towers;
+  ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
   Track gameTrack;
@@ -13,6 +13,7 @@ public class Game {
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
+    towers = new ArrayList<Tower>();
     buttonQ = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     speed = 1;
@@ -36,7 +37,9 @@ public class Game {
     buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
     bloons.add(new Bloon(gameTrack.getStart(), 0, false));
-
+    
+    //Testing IceTower
+    towers.add(new IceTower(525,350));
   }
   
   void run() {
@@ -59,7 +62,9 @@ public class Game {
     for(Bloon b : bloons) {
       b.display();
     }
-    
+    for(Tower t : towers) {
+      t.display();
+    }
     rectMode(CORNERS);
     fill(BLUE);
     stroke(0);
@@ -188,4 +193,7 @@ public class Game {
     }
   }
   
+  ArrayList<Bloon> getBloons() {
+    return bloons;
+  }
 }
