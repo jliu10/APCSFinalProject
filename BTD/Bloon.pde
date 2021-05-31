@@ -43,12 +43,20 @@ public class Bloon {
     speed = n;
   }
   
+  float getSpeed() {
+    return speed;
+  }
+  
   void bloonPop() {
     bloonType--;
   }
   
   int getType() {
     return bloonType;
+  }
+  
+  float[] getPosition() { //get position of bloon
+    return pos;
   }
   
   void move() {
@@ -91,9 +99,5 @@ public class Bloon {
     strokeWeight(2);
     ellipse(pos[0], pos[1], 25, 35);
     line(pos[0], pos[1] + 37/2, pos[0], pos[1] + 37/2 + 15);
-  }
-  
-  float[] getPosition() {
-    return pos;
   }
 }
