@@ -78,20 +78,20 @@ public class Bloon {
   }
   
   void display() {
-    switch(bloonType) {
-      case 0: //red bloon
-        bloonColor = color(227, 0, 0);
-        speed = 1;
-        break;
-      case 1: //blue bloon
-        bloonColor = color(0, 0, 227);
-        speed = 1.4;
-        break;
-      case 2: //green bloon
-        bloonColor = color(0, 227, 0);
-        speed = 1.8;
-        break;
-    }
+    //switch(bloonType) {
+    //  case 0: //red bloon
+    //    bloonColor = color(227, 0, 0);
+    //    speed = 1;
+    //    break;
+    //  case 1: //blue bloon
+    //    bloonColor = color(0, 0, 227);
+    //    speed = 1.4;
+    //    break;
+    //  case 2: //green bloon
+    //    bloonColor = color(0, 227, 0);
+    //    speed = 1.8;
+    //    break;
+    //}
     move();
     ellipseMode(CENTER);
     fill(bloonColor);
