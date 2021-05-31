@@ -27,7 +27,7 @@ public class Game {
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
     startBattle = new Button("START BATTLE", width - 125, height - 100, 220, 50, 25, color(0, 220, 0), true);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
-    buyIceTower = new BuyButton("Ice", "$425", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
+    buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
     
     lives = 100;
     money = 650;
@@ -163,7 +163,9 @@ public class Game {
   float getSpeed() {
     return speed;
   }
-  
+  ArrayList<Tower> getTowers() {
+    return towers;
+  }
   void sellTower(Tower t) {
     money += (int)(t.getValue()*6/10);
     t = null;
@@ -213,7 +215,7 @@ public class Game {
     else if(buyDartTower.getHovering()) {
       println("bought dart tower");
     }
-    else if(buyIceTower.getHovering() && money >= 425) {
+    else if(buyIceTower.getHovering() && money >= 255) {
       println("bought ice tower");
       placing = true;
       placeTower = 1;
@@ -225,7 +227,7 @@ public class Game {
           break;
         case 1: // ice tower
           towers.add(new IceTower(mouseX, mouseY));
-          money -= 425;
+          money -= 255;
           break;
       }
     }
