@@ -93,4 +93,7 @@ public class Bloon {
     line(pos[0], pos[1] + 37/2, pos[0], pos[1] + 37/2 + 15);
   }
   
+  float[] getPosition() {
+    return pos;
+  }
 }
