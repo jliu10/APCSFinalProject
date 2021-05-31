@@ -61,13 +61,15 @@ public class Game {
         break;
     }
     valid = true;
-    for(Block b : gameTrack.getDeque()) {
+    for(Block b : gameTrack.getDeque()) { // invalid on track
       if(abs(mouseX - b.getX()) <= b.getLength()/2 + r && abs(mouseY - b.getY()) <= b.getWidth()/2 + r) {
         valid = false;
       }
     }
-    for(Tower t : towers) {
-      // invalid on towers
+    for(Tower t : towers) { // invalid on towers
+      if(dist(mouseX, mouseY, t.getPos()[0], t.getPos()[1]) <= t.getRad() + r) {
+        valid = false;
+      }
     }
     
     if(lives <= 0) done = true;
