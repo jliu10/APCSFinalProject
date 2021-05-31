@@ -12,12 +12,20 @@ abstract class Tower {
   void select() {
     if (mouseButton == 37 && dist(mouseX,mouseY, position[0], position[1]) < radius) {
       selected = true;
+      for (Tower t : currentGame.getTowers()) {
+        if (!this.equals(t)) {
+          t.selectSetFalse();
+        }
+      }
     }
   }
   void deselect() {
     if (mouseButton == 37 && dist(mouseX,mouseY, position[0], position[1]) > range) {
       selected = false;
     }
+  }
+  void selectSetFalse() {
+    selected = false;
   }
   void upgrade(int path) {
     if (upgrades[path] < 2) {
