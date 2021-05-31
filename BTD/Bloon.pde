@@ -5,12 +5,14 @@ public class Bloon {
   float speed, size;
   color bloonColor;
   boolean camo;
+  int FreezeCounter;
   
   Bloon(Block b, int type, boolean isCamo) {
     currentBlock = b;
     pos = new float[]{b.getX(), b.getY()};
     bloonType = type;
     camo = isCamo;
+    FreezeCounter = 0;
     switch(type) {
       case 0: //red bloon
         bloonColor = color(227, 0, 0);
@@ -58,11 +60,16 @@ public class Bloon {
   float[] getPosition() { //get position of bloon
     return pos;
   }
-  
+  int getFreezeCounter() {
+    return FreezeCounter;
+  }
+  void setFreezeCounter(int num) {
+    FreezeCounter = num;
+  }
   void move() {
     float xDiff = pos[0] - currentBlock.getNextBlock().getX();
     float yDiff = pos[1] - currentBlock.getNextBlock().getY();
-    if(xDiff*xDiff + yDiff*yDiff <= 1) {
+    if(xDiff*xDiff + yDiff*yDiff <= 4) {
       pos[0] = currentBlock.getNextBlock().getX();
       pos[1] = currentBlock.getNextBlock().getY();
       changeToNextBlock();
@@ -73,25 +80,27 @@ public class Bloon {
        
      }
     */
-    pos[0] += speed * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
-    pos[1] += speed * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
+    if (FreezeCounter <= 0) {
+      pos[0] += speed * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
+      pos[1] += speed * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
+    }
   }
   
   void display() {
-    //switch(bloonType) {
-    //  case 0: //red bloon
-    //    bloonColor = color(227, 0, 0);
-    //    speed = 1;
-    //    break;
-    //  case 1: //blue bloon
-    //    bloonColor = color(0, 0, 227);
-    //    speed = 1.4;
-    //    break;
-    //  case 2: //green bloon
-    //    bloonColor = color(0, 227, 0);
-    //    speed = 1.8;
-    //    break;
-    //}
+    switch(bloonType) {
+      case 0: //red bloon
+        bloonColor = color(227, 0, 0);
+        //speed = 1;
+        break;
+      case 1: //blue bloon
+        bloonColor = color(0, 0, 227);
+        //speed = 1.4;
+        break;
+      case 2: //green bloon
+        bloonColor = color(0, 227, 0);
+        //speed = 1.8;
+        break;
+    }
     move();
     ellipseMode(CENTER);
     fill(bloonColor);
