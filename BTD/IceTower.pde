@@ -28,11 +28,6 @@ public class IceTower extends Tower{
     ellipse(position[0], position[1], radius, radius);
     select(); deselect(); shoot();
   }
-  boolean bloonInRange(Bloon b) {
-    float xDiff = b.getPosition()[0] - position[0];
-    float yDiff = b.getPosition()[1] - position[1];
-    return (xDiff*xDiff + yDiff*yDiff < range*range);
-  }
   void shoot() {
     active = false;
     for(Bloon b : currentGame.getBloons()) {

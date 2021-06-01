@@ -37,7 +37,11 @@ abstract class Tower {
   float getValue() {
     return totalValue;
   }
-  
+  boolean bloonInRange(Bloon b) {
+    float xDiff = b.getPosition()[0] - position[0];
+    float yDiff = b.getPosition()[1] - position[1];
+    return (xDiff*xDiff + yDiff*yDiff < range*range);
+  }
   float[] getPos() {
     return position;
   }
