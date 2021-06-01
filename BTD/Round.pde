@@ -16,11 +16,11 @@ public class Round {
   }
   
   void spawn(int num, int type, boolean isCamo, int spacing, int time) {
-    int startSpawn = millis();
-    if(millis() - currentGame.getStartTime() >= time && millis() - currentGame.getStartTime() <= time + 20) {
+    int startSpawn = currentTime;
+    if(currentTime == time) {
       println("spawn called");
       for(int i = 0; i < num * spacing; i++) {
-        if((millis() - startSpawn) % spacing == 0) {
+        if((currentTime - startSpawn) % spacing == 0) {
           currentGame.getBloons().add(new Bloon(currentGame.getTrack().getStart(), type, isCamo));
         }
       }
@@ -28,17 +28,19 @@ public class Round {
   }
   
   void run() {
+    println("currentTime: " + currentTime);
     if(counter > 0) {
       counter --;
-      currentTime++;
+      currentTime ++;
     }
+    else counter = 1000;
     switch(roundNumber) {
       case 1:
-        spawn(5, 2, false, 2000, 3000);
+        spawn(5, 2, false, 2000, 1000);
         break;
     }
     
-    if(millis() - currentGame.getStartTime() >= endTime && currentGame.getBloons().size() == 0) {
+    if(currentTime >= endTime && currentGame.getBloons().size() == 0) {
       done = true;
       startBattle.toggle();
       currentGame.nextRound();
