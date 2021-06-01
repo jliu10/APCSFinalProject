@@ -28,7 +28,12 @@ public class DartTower extends Tower {
     select(); deselect();
     shoot();
     for (Dart d : dartList) {
-      d.display();
+      if (d.getHealth() > 0) {
+        d.display();
+      }
+      else if (d.getHealth() == 0) {
+        d = null;
+      }
     }
   }
   
