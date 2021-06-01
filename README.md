@@ -26,5 +26,5 @@ DEV LOG:
 - Srinath 2021-05-29: Created abstract class Projectile
 - Srinath 2021-05-30: Created sellTower function; created IceTower
 - Justin 2021-05-30: Added tower shop menu; added purchasing and tower placement mechanism
-- Justin 2021-05-31: Developed tower placement
+- Justin 2021-05-31: Developed tower placement and round system
 - Srinath 2021-05-31: Fixed shoot() in IceTower; created animation for IceTower and frozen bloons
