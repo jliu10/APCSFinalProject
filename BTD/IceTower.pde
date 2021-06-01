@@ -33,8 +33,8 @@ public class IceTower extends Tower{
     for(Bloon b : currentGame.getBloons()) {
       if (bloonInRange(b)) {
         active = true;
-        if (b.getFreezeCounter() <= -30) {
-          b.setFreezeCounter(30);
+        if (b.getFreezeCounter() <= 0) {
+          b.setFreezeCounter(60);
         }
         else {
           b.setFreezeCounter(b.getFreezeCounter() - 1);

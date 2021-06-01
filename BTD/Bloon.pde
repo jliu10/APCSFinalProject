@@ -91,7 +91,7 @@ public class Bloon {
        
      }
     */
-    if (FreezeCounter <= 0) {
+    if (FreezeCounter <= 30) {
       pos[0] += speed * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
       pos[1] += speed * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
     }
@@ -100,7 +100,7 @@ public class Bloon {
   void display() {
     switch(bloonType) {
       case 0: //red bloon
-        if (FreezeCounter > 0) {
+        if (FreezeCounter > 30) {
           bloonColor = color(227, 50, 50);
         }
         else {
@@ -109,11 +109,16 @@ public class Bloon {
         //speed = 1;
         break;
       case 1: //blue bloon
-        bloonColor = color(0, 0, 227);
+        if (FreezeCounter > 30) {
+          bloonColor = color(50, 50, 227);
+        }
+        else {
+          bloonColor = color(0, 0, 227);
+        }
         //speed = 1.4;
         break;
       case 2: //green bloon
-        if (FreezeCounter > 0) {
+        if (FreezeCounter > 30) {
           bloonColor = color(50, 227, 50);
         }
         else {
@@ -129,7 +134,7 @@ public class Bloon {
     strokeWeight(2);
     line(pos[0], pos[1] + 37/2, pos[0], pos[1] + 37/2 + 15);
     ellipse(pos[0], pos[1], 25, 35);
-    if (FreezeCounter > 0) {
+    if (FreezeCounter > 30) {
       stroke(178,255,256);
       fill(178,255,256);
       arc(pos[0], pos[1], 25, 35, PI, 2*PI);
