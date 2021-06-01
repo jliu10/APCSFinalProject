@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Game {
-  int lives, money, difficulty, placeTower;
-  // Round currentRound;
+  int lives, money, difficulty, placeTower, roundStartTime, roundNumber;
+  Round currentRound;
   boolean done, quitConfirm, wasPaused, placing, valid;
   float speed, lastSpeed;
   ArrayList<Tower> towers;
@@ -19,6 +19,7 @@ public class Game {
     speed = 1;
     lastSpeed = 1;
     difficulty = diff;
+    roundNumber = 1;
     
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
@@ -36,21 +37,23 @@ public class Game {
     buttonQ.add(buyIceTower);
     buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
-    bloons.add(new Bloon(gameTrack.getStart(), 2, false));
+    //bloons.add(new Bloon(gameTrack.getStart(), 2, false));
     
     //Testing IceTower
     //towers.add(new IceTower(525,350));
   }
   
   void run() {
+    println(bloons.size());
+    if(currentRound != null && !currentRound.getDone()) currentRound.run();
+    
     for(int i = 0; i < bloons.size(); i++) {
       Bloon b = bloons.get(i);
       if(b.getCurrentBlock() == gameTrack.getLast()) {
-        bloons.remove(b);
         lives -= b.getType() + 1;
+        bloons.remove(b);
       }
     }
-    
     
     float r = 0;
     switch(placeTower) { // tower radius
@@ -140,7 +143,7 @@ public class Game {
     textSize(24);
     fill(255);
     textLeading(25);
-    text("Round: \nLives: " + lives + "\nMoney: $" + money, width - 245, 25);
+    text("Round: " + roundNumber + "\nLives: " + lives + "\nMoney: $" + money, width - 245, 25);
     
     if(quitConfirm) {
       fill(BLUE);
@@ -213,6 +216,9 @@ public class Game {
     }
     else if(startBattle.getActive() && startBattle.getHovering()) {
       println("battle started");
+      roundStartTime = millis();
+      println("start time: " + roundStartTime);
+      currentRound = new Round(roundNumber);
       startBattle.toggle();
     }
     else if(buyDartTower.getHovering()) {
@@ -257,5 +263,17 @@ public class Game {
   
   ArrayList<Bloon> getBloons() {
     return bloons;
+  }
+  
+  int getStartTime() {
+    return roundStartTime;
+  }
+  
+  void nextRound() {
+    roundNumber++;
+  }
+  
+  Track getTrack() {
+    return gameTrack;
   }
 }
