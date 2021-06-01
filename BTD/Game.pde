@@ -69,6 +69,10 @@ public class Game {
     
     for(int i = 0; i < bloons.size(); i++) {
       Bloon b = bloons.get(i);
+      if(b.getType() < 0) {
+        bloons.remove(b);
+        i--;
+      }
       if(b.getCurrentBlock() == gameTrack.getLast()) {
         lives -= b.getType() + 1;
         bloons.remove(b);
