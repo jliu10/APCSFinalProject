@@ -6,6 +6,7 @@ public class Game {
   Round currentRound;
   boolean done, quitConfirm, wasPaused, placing, valid;
   float speed, lastSpeed;
+  Tower selectedTower;
   ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
@@ -30,7 +31,8 @@ public class Game {
     quitNo = new Button("No", width - 70, height - 30, 80, 50, 40, BLUE, false);
     pause = new Button("PAUSE", width - 180, height - 30, 130, 50, 40, color(150), true);
     resume = new Button("PLAY", width - 180, height - 30, 130, 50, 40, color(150), false);
-    startBattle = new Button("START BATTLE", width - 125, height - 100, 220, 50, 25, color(0, 220, 0), true);
+    startBattle = new Button("START BATTLE", width - 180, height - 100, 130, 50, 16, color(0, 220, 0), true);
+    sell = new Button("SELL", width - 55, height - 100, 100, 50, 40, color(255, 170, 0), false);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
     buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
     
@@ -95,10 +97,19 @@ public class Game {
         valid = false;
       }
     }
+    
+    selectedTower = null;
     for(Tower t : towers) { // invalid on towers
       if(dist(mouseX, mouseY, t.getPos()[0], t.getPos()[1]) <= t.getRad() + r) {
         valid = false;
       }
+      
+      if(t.getSelected()) selectedTower = t;
+    }
+    
+    if(sell.getActive()) sell.toggle();
+    if(selectedTower != null) {
+      if(!sell.getActive()) sell.toggle();
     }
     
     if(lives <= 0) done = true;
@@ -167,6 +178,7 @@ public class Game {
     pause.display();
     resume.display();
     startBattle.display();
+    sell.display();
     
     textAlign(LEFT);
     textSize(24);
@@ -254,6 +266,10 @@ public class Game {
       println("start time: " + roundStartTime);
       currentRound = new Round(roundNumber);
       startBattle.toggle();
+    }
+    else if(sell.getActive() && sell.getHovering()) {
+      println("sold");
+      sellTower(selectedTower);
     }
     else if(buyDartTower.getHovering()) {
       println("bought dart tower");
