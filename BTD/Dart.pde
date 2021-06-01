@@ -1,10 +1,10 @@
 public class Dart extends Projectile {
-  int health;
+  int dartHealth;
   
   Dart(float Xcor, float Ycor, float targetX, float targetY) {
     position = new float[2];
     position[0] = Xcor; position[1] = Ycor;
-    damage = 1; health = 1;
+    damage = 1; dartHealth = 1;
     float Xdiff = targetX - Xcor; float Ydiff = targetY - Ycor;
     float direction1 = asin(Ydiff/sqrt(Xdiff*Xdiff + Ydiff*Ydiff));
     if (Xcor >= 0) {
@@ -15,13 +15,18 @@ public class Dart extends Projectile {
     }
   }
   
-  void display() {
-    if (health > 0) {
-      rotate(radians(direction));
+ void display() {
+    if (dartHealth > 0) {
       fill(123,63,0);
+      move();
       ellipse(position[0],position[1],5,10);
-      move(); hitBloon(currentGame.getBloons());
+      hitBloon(currentGame.getBloons());
     }
+  }
+  
+  void move() {
+    position[0] += speed * currentGame.getSpeed() * cos(radians(direction));
+    position[1] += speed * currentGame.getSpeed() * sin(radians(direction));
   }
   
   boolean hitBloon(ArrayList<Bloon> bloonsList) {
@@ -31,8 +36,8 @@ public class Dart extends Projectile {
       if (xDiff*xDiff + yDiff * yDiff < 50) {
         b.setType(b.getType() - 1);
         b.setHealth(b.getHealth() - 1);
-        health -= 1;
-        if (health == 0) {
+        dartHealth -= 1;
+        if (dartHealth == 0) {
           return true;
         }
       }
