@@ -6,6 +6,7 @@ public class Bloon {
   color bloonColor;
   boolean camo;
   int FreezeCounter;
+  int health;
   
   Bloon(Block b, int type, boolean isCamo) {
     currentBlock = b;
@@ -17,14 +18,17 @@ public class Bloon {
       case 0: //red bloon
         bloonColor = color(227, 0, 0);
         speed = 1;
+        health = 1;
         break;
       case 1: //blue bloon
         bloonColor = color(0, 0, 227);
         speed = 1.4;
+        health = 2;
         break;
       case 2: //green bloon
         bloonColor = color(0, 227, 0);
         speed = 1.8;
+        health = 3;
         break;
     }
   }
@@ -40,7 +44,12 @@ public class Bloon {
   boolean isCamo() {
     return camo;
   }
-  
+  int getHealth() {
+    return health;
+  }
+  void setHealth(int newHealth) {
+    health = newHealth;
+  }
   void setSpeed(float n) {
     speed = n;
   }
@@ -56,7 +65,9 @@ public class Bloon {
   int getType() {
     return bloonType;
   }
-  
+  void setType(int newType) {
+    bloonType = newType;
+  }
   float[] getPosition() { //get position of bloon
     return pos;
   }
