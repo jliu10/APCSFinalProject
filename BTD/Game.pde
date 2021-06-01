@@ -44,7 +44,7 @@ public class Game {
   }
   
   void run() {
-    println(bloons.size());
+    //println(bloons.size());
     if(currentRound != null && !currentRound.getDone()) currentRound.run();
     
     for(int i = 0; i < bloons.size(); i++) {
