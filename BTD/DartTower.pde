@@ -8,9 +8,10 @@ public class DartTower extends Tower {
     position[0] = Xcor; position[1] = Ycor;
     selected = false;
     upgrades = new int[2];
+    projectileSpeed = 3;
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 200; firerate = 0.5; direction = 0;
-    totalValue = 255; projectileSpeed = 0; //no projectiles for IceTower
+    totalValue = 170; projectileSpeed = 10;
     shootTime = 50;
     shootCounter = 0;
     dartList = new ArrayList<Dart>();
@@ -35,9 +36,9 @@ public class DartTower extends Tower {
     if (shootCounter == 0) {
       for(Bloon b : currentGame.getBloons()) {
         if (bloonInRange(b) && shootCounter == 0) {
-          Dart d = new Dart(position[0], position[1], b.getPosition()[0], b.getPosition()[1]);
+          Dart d = new Dart(position[0], position[1], b.getPosition()[0], b.getPosition()[1], projectileSpeed);
           dartList.add(d);
-          shootCounter = 50;
+          shootCounter = shootTime;
         }
       }
     }
