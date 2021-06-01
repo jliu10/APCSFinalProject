@@ -205,9 +205,10 @@ public class Game {
   ArrayList<Tower> getTowers() {
     return towers;
   }
+  
   void sellTower(Tower t) {
     money += (int)(t.getValue()*6/10);
-    t = null;
+    towers.remove(t);
   }
   
   void leftMB() {
