@@ -4,7 +4,7 @@ public class Dart extends Projectile {
   Dart(float Xcor, float Ycor, float targetX, float targetY) {
     position = new float[2];
     position[0] = Xcor; position[1] = Ycor;
-    damage = 1; dartHealth = 1;
+    damage = 1; dartHealth = 1; speed = 1;
     float Xdiff = targetX - Xcor; float Ydiff = targetY - Ycor;
     float direction1 = asin(Ydiff/sqrt(Xdiff*Xdiff + Ydiff*Ydiff));
     if (Xcor >= 0) {
@@ -25,6 +25,7 @@ public class Dart extends Projectile {
   }
   
   void move() {
+    println("position: " + position[0] + ", " + position[1]);
     position[0] += speed * currentGame.getSpeed() * cos(radians(direction));
     position[1] += speed * currentGame.getSpeed() * sin(radians(direction));
   }
