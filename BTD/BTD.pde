@@ -1,6 +1,6 @@
 int page, difficulty, map;
 Game currentGame;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, sell;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
@@ -37,6 +37,7 @@ void setup() {
   gameButtons.add(startBattle);
   gameButtons.add(buyDartTower);
   gameButtons.add(buyIceTower);
+  gameButtons.add(sell);
   
   dartImage = loadImage("Dart.png");
   iceImage = loadImage("Ice.png");
