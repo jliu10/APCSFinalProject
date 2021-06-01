@@ -24,9 +24,12 @@ public class Dart extends Projectile {
   }
   
   void move() {
-    println("position: " + position[0] + ", " + position[1]);
     position[0] += speed * currentGame.getSpeed() * cos(radians(direction));
     position[1] += speed * currentGame.getSpeed() * sin(radians(direction));
+  }
+  
+  int getHealth() {
+    return health;
   }
   
   boolean hitBloon(ArrayList<Bloon> bloonsList) {
