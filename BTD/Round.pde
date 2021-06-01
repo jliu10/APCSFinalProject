@@ -36,7 +36,7 @@ public class Round {
     else counter = 1000;
     switch(roundNumber) {
       case 1:
-        spawn(5, 2, false, 200, 100);
+        spawn(5, 2, false, 200, 200);
         break;
     }
     
