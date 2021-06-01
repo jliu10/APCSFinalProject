@@ -20,7 +20,7 @@ abstract class Tower {
     }
   }
   void deselect() {
-    if (mouseButton == 37 && dist(mouseX,mouseY, position[0], position[1]) > range) {
+    if (mouseButton == 37 && mouseX < width - 250 && dist(mouseX,mouseY, position[0], position[1]) > range) {
       selected = false;
     }
   }
@@ -48,5 +48,9 @@ abstract class Tower {
   
   float getRad() {
     return radius;
+  }
+  
+  boolean getSelected() {
+    return selected;
   }
 }
