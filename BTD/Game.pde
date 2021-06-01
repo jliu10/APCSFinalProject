@@ -58,6 +58,7 @@ public class Game {
     float r = 0;
     switch(placeTower) { // tower radius
       case 0:
+        r = 20;
         break;
       case 1:
         r = 20;
@@ -93,13 +94,16 @@ public class Game {
     
     if(placing) {
       if(mouseX < width - 250) {
+        if(valid) fill(0, 0, 0, 100);
+        else fill(255, 0, 0, 100);
+        ellipseMode(RADIUS);
         switch(placeTower) {
           case 0: // dart tower
+            circle(mouseX, mouseY, 20);
+            noStroke();
+            circle(mouseX, mouseY, 200);
             break;
           case 1: // ice tower
-            if(valid) fill(0, 0, 0, 100);
-            else fill(255, 0, 0, 100);
-            ellipseMode(RADIUS);
             circle(mouseX, mouseY, 20);
             noStroke();
             circle(mouseX, mouseY, 200);
@@ -227,6 +231,8 @@ public class Game {
     }
     else if(buyDartTower.getHovering()) {
       println("bought dart tower");
+      placing = true;
+      placeTower = 0;
     }
     else if(buyIceTower.getHovering() && money >= 255) {
       println("bought ice tower");
@@ -237,6 +243,8 @@ public class Game {
       placing = false;
       switch(placeTower) {
         case 0: // dart tower
+          towers.add(new DartTower(mouseX, mouseY));
+          money -= 170;
           break;
         case 1: // ice tower
           towers.add(new IceTower(mouseX, mouseY));
