@@ -27,14 +27,24 @@ public class DartTower extends Tower {
     ellipse(position[0], position[1], radius, radius);
     select(); deselect();
     shoot();
-    for (Dart d : dartList) {
+    for (int i = 0; i < dartList.size(); i++) {
+      Dart d = dartList.get(i);
       if (d.getHealth() > 0) {
         d.display();
       }
       else if (d.getHealth() == 0) {
-        d = null;
+        dartList.remove(i);
+        i--;
       }
     }
+    //for (Dart d : dartList) {
+    //  if (d.getHealth() > 0) {
+    //    d.display();
+    //  }
+    //  else if (d.getHealth() == 0) {
+    //    d = null;
+    //  }
+    //}
   }
   
   void shoot() {
