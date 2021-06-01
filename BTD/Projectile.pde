@@ -3,6 +3,7 @@ abstract class Projectile {
   float speed;
   float direction;
   int damage;
+  int health;
   
   abstract void display();
   abstract boolean hitBloon(ArrayList<Bloon> bloonsList);
