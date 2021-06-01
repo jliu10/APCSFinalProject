@@ -160,6 +160,10 @@ public class Game {
       quitYes.display();
       quitNo.display();
     }
+    
+    fill(0);
+    textSize(24);
+    text("Bloon Count: " + bloons.size(), 0, 20);
   }
   
   boolean isDone() {
