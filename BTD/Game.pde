@@ -52,6 +52,7 @@ public class Game {
       if(b.getCurrentBlock() == gameTrack.getLast()) {
         lives -= b.getType() + 1;
         bloons.remove(b);
+        i--;
       }
     }
     
