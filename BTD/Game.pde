@@ -1,13 +1,15 @@
 import java.util.*;
 
 public class Game {
-  int lives, money, difficulty, placeTower, roundStartTime, roundNumber;
+  int lives, money, difficulty, placeTower, roundStartTime, roundNumber, counter, currentTime;
+  // don't need roundStartTime?
   Round currentRound;
   boolean done, quitConfirm, wasPaused, placing, valid;
   float speed, lastSpeed;
   ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<Bloon> bloons;
+  ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
   ArrayDeque<Button> buttonQ;
   
@@ -16,10 +18,12 @@ public class Game {
     towers = new ArrayList<Tower>();
     buttonQ = new ArrayDeque<Button>();
     gameTrack = new Track(map);
+    spawns = new ArrayList<int[]>();
     speed = 1;
     lastSpeed = 1;
     difficulty = diff;
     roundNumber = 1;
+    counter = 1000;
     
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
@@ -43,9 +47,25 @@ public class Game {
     //towers.add(new IceTower(525,350));
   }
   
-  void run() {
-    //println(bloons.size());
+  void run() {    
+    // millis() is imprecise, so we have own timer
+    if(counter > 0) {
+      counter --;
+      currentTime ++;
+    }
+    else counter = 1000;
+    
     if(currentRound != null && !currentRound.getDone()) currentRound.run();
+    
+    // spawning bloons
+    for(int i = 0; i < spawns.size(); i++) {
+      int[] e = spawns.get(i);
+      if(currentTime == e[2]) {
+        spawn(e[0], e[1]);
+        spawns.remove(i);
+        i--;
+      }
+    }
     
     for(int i = 0; i < bloons.size(); i++) {
       Bloon b = bloons.get(i);
@@ -288,5 +308,18 @@ public class Game {
   
   Track getTrack() {
     return gameTrack;
+  }
+  
+  int getCurrentTime() {
+    return currentTime;
+  }
+  
+  ArrayList<int[]> getSpawns() {
+    return spawns;
+  }
+  
+  void spawn(int type, int isCamo) { // isCamo = 0 : false; isCamo = 1 : true
+    if(isCamo == 0) bloons.add(new Bloon(currentGame.getTrack().getStart(), type, false));
+    else bloons.add(new Bloon(currentGame.getTrack().getStart(), type, true));
   }
 }
