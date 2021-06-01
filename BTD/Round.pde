@@ -20,7 +20,7 @@ public class Round {
     if(currentTime == time) {
       println("spawn called");
       for(int i = 0; i < num * spacing; i++) {
-        if((currentTime - startSpawn) % spacing == 0) {
+        if(i % spacing == 0) {
           currentGame.getBloons().add(new Bloon(currentGame.getTrack().getStart(), type, isCamo));
         }
       }
@@ -36,7 +36,7 @@ public class Round {
     else counter = 1000;
     switch(roundNumber) {
       case 1:
-        spawn(5, 2, false, 2000, 1000);
+        spawn(5, 2, false, 200, 100);
         break;
     }
     
