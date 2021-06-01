@@ -1,46 +1,26 @@
 public class Round {
-  int[] bloonsLeft; // index corresponds to bloonType
-  int roundNumber, endTime, counter, currentTime;
+  int roundNumber, endTime;
   ArrayList<Bloon> bloons;
   boolean done;
   
   Round(int n) {
     roundNumber = n;
-    counter = 1000;
-    bloonsLeft = new int[8];
     switch(roundNumber) {
       case 1:
-        endTime = 10000;
+        endTime = 1000;
+        addSpawn(5, 2, 0, 200, 200);
         break;
     }
   }
   
-  void spawn(int num, int type, boolean isCamo, int spacing, int time) {
-    int startSpawn = currentTime;
-    if(currentTime == time) {
-      println("spawn called");
-      for(int i = 0; i < num * spacing; i++) {
-        if(i % spacing == 0) {
-          currentGame.getBloons().add(new Bloon(currentGame.getTrack().getStart(), type, isCamo));
-        }
-      }
+  void addSpawn(int num, int type, int isCamo, int spacing, int time) {
+    for(int i = 0; i < num; i++, time += spacing) {
+      currentGame.getSpawns().add(new int[]{type, isCamo, time});
     }
   }
   
   void run() {
-    println("currentTime: " + currentTime);
-    if(counter > 0) {
-      counter --;
-      currentTime ++;
-    }
-    else counter = 1000;
-    switch(roundNumber) {
-      case 1:
-        spawn(5, 2, false, 200, 200);
-        break;
-    }
-    
-    if(currentTime >= endTime && currentGame.getBloons().size() == 0) {
+    if(currentGame.getCurrentTime() >= endTime && currentGame.getBloons().size() == 0) {
       done = true;
       startBattle.toggle();
       currentGame.nextRound();
@@ -49,10 +29,6 @@ public class Round {
   
   boolean getDone() {
     return done;
-  }
-  
-  int[] getBloonsLeft() {
-    return bloonsLeft;
   }
   
 }
