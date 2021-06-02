@@ -66,7 +66,7 @@ public class Bloon {
     return bloonType;
   }
   void setType(int newType) {
-    currentGame.addMoney(bloonType + 1);
+    currentGame.addMoney(1);
     bloonType = newType;
   }
   float[] getPosition() { //get position of bloon
