@@ -22,7 +22,7 @@ public class Round {
   void run() {
     if(currentGame.getCurrentTime() >= endTime && currentGame.getBloons().size() == 0) {
       done = true;
-      currentGame.addMoney(99 + roundNumber);
+      currentGame.addMoney(100 + roundNumber);
       startBattle.toggle();
       currentGame.nextRound();
     }
