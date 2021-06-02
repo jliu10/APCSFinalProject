@@ -343,4 +343,8 @@ public class Game {
     if(isCamo == 0) bloons.add(new Bloon(currentGame.getTrack().getStart(), type, false));
     else bloons.add(new Bloon(currentGame.getTrack().getStart(), type, true));
   }
+  
+  void addMoney(int n) {
+    money += n;
+  }
 }
