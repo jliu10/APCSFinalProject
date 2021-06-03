@@ -114,7 +114,16 @@ public class Game {
     if(sell.getActive()) sell.toggle();
     if(selectedTower != null) {
       if(!sell.getActive()) sell.toggle();
+      
+    // upgrades
+      for(Button b : buttonQ) {
+        if(b.getActive()) b.toggle();
+
+      }
     }
+    else for(Button b : buttonQ) {
+        if(!b.getActive()) b.toggle();   
+      }
     
     if(lives <= 0) done = true;
     display();
