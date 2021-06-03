@@ -18,7 +18,10 @@ public class Dart extends Projectile {
     if (health > 0) {
       fill(123,63,0);
       move();
-      ellipse(position[0],position[1],5,10);
+      float Xcor = position[0]; float Ycor = position[1];
+      float d = radians(direction+90);
+      bezier(Xcor + 6*sin(d),Ycor - 6*cos(d), Xcor - 18*cos(d)-24*sin(d), Ycor + 24*cos(d)-18*sin(d), 
+      Xcor + 18*cos(d)-24*sin(d), Ycor + 24*cos(d)+18*sin(d), Xcor + 6*sin(d), Ycor - 6*cos(d));
       hitBloon(currentGame.getBloons());
     }
   }
