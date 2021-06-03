@@ -11,7 +11,7 @@ public class DartTower extends Tower {
     projectileSpeed = 3;
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 200; firerate = 0.5; direction = 0;
-    totalValue = 170; projectileSpeed = 10;
+    totalValue = 170; projectileSpeed = 5;
     shootTime = 50;
     shootCounter = 0;
     dartList = new ArrayList<Dart>();
