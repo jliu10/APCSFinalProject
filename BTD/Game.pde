@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Game {
   int lives, money, difficulty, placeTower, roundNumber, counter, currentTime;
-  // don't need roundStartTime?
   Round currentRound;
   boolean done, quitConfirm, wasPaused, placing, valid;
   float speed, lastSpeed;
@@ -35,6 +34,8 @@ public class Game {
     sell = new Button("SELL", width - 55, height - 100, 100, 50, 40, color(255, 170, 0), false);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
     buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
+    buyLongRangeDarts = new BuyButton("Long Range", "$90", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, longRangeDartsImage);
+    buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
     
     lives = 100;
     money = 650;
@@ -118,12 +119,11 @@ public class Game {
     // upgrades
       for(Button b : buttonQ) {
         if(b.getActive()) b.toggle();
-
       }
     }
     else for(Button b : buttonQ) {
         if(!b.getActive()) b.toggle();   
-      }
+    }
     
     if(lives <= 0) done = true;
     display();
