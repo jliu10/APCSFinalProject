@@ -8,9 +8,12 @@ public class Round {
     switch(roundNumber) {
       case 1:
         endTime = 1000; // manually calculate the last bloon's spawn time
-        addSpawn(5, 2, 0, 200, 200);
+        addSpawn(5, 0, 0, 200, 200); // void addSpawn(int num, int type, int isCamo, int spacing, int time)
         break;
       case 2:
+        addSpawn(5, 0, 0, 100, 200);
+        addSpawn(5, 1, 0, 150, 700);
+        endTime = 1750;
         break;
     }
   }
