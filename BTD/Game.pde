@@ -285,7 +285,7 @@ public class Game {
       placing = true;
       placeTower = 1;
     }
-    else if(placing && valid) {
+    else if(placing && valid && mouseX < width - 250) {
       placing = false;
       switch(placeTower) {
         case 0: // dart tower
