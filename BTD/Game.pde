@@ -56,8 +56,8 @@ public class Game {
     if(currentRound != null && !currentRound.getDone()) {
       
       if(counter > 0) {
-      counter --;
-      currentTime ++;
+      counter -= 1 * speed;
+      currentTime += 1 * speed;
       }
       else counter = 1000;
       currentRound.run();
