@@ -7,8 +7,10 @@ public class Round {
     roundNumber = n;
     switch(roundNumber) {
       case 1:
-        endTime = 1000;
+        endTime = 1000; // manually calculate the last bloon's spawn time
         addSpawn(5, 2, 0, 200, 200);
+        break;
+      case 2:
         break;
     }
   }
@@ -20,7 +22,7 @@ public class Round {
   }
   
   void run() {
-    if(currentGame.getCurrentTime() >= endTime && currentGame.getBloons().size() == 0) {
+    if(currentGame.getCurrentTime() >= endTime + 1 && currentGame.getBloons().size() == 0) {
       done = true;
       currentGame.addMoney(100 + roundNumber);
       startBattle.toggle();
