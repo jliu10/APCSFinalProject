@@ -1,5 +1,6 @@
 public class IceTower extends Tower{
   boolean active; //change animation when active
+  int animationTimer;
   
   IceTower(float Xcor, float Ycor) {
     position = new float[2];
@@ -7,17 +8,20 @@ public class IceTower extends Tower{
     selected = false;
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
-    radius = 20; range = 200; firerate = 0.5; direction = 0; //do not need direction for IceTower
+    radius = 20; range = 200; //firerate = 0.5; direction = 0; //do not need direction for IceTower
     totalValue = 255; projectileSpeed = 0; //no projectiles for IceTower
+    shootTime = 60; shootCounter = 0;
     active = false;
+    animationTimer = 0;
   }
   
   void display() {
     ellipseMode(RADIUS);
-    if (active) {
+    if (animationTimer > 0) {//show flash of ice when ice tower is freezing
       stroke(0,0);
       fill(255,50);
       ellipse(position[0],position[1],range,range);
+      animationTimer--;
     }
     stroke(0);
     if (selected) {
@@ -30,21 +34,24 @@ public class IceTower extends Tower{
   }
   void shoot() {
     active = false;
-    for(Bloon b : currentGame.getBloons()) {
-      if (bloonInRange(b)) {
-        active = true;
-        if (b.getFreezeCounter() <= 0) {
-          b.setFreezeCounter(60);
-        }
-        else {
-          b.setFreezeCounter(b.getFreezeCounter() - 1);
+    if (shootCounter == 0) {
+      for(Bloon b : currentGame.getBloons()) {
+        if (bloonInRange(b)) {
+          active = true;
+          if (!b.getFrozen()) {//set all non-frozen bloons in range to frozen
+            b.setFrozen();
+          }
         }
       }
-      //float xDiff = b.getPosition()[0] - position[0];
-      //float yDiff = b.getPosition()[1] - position[1];
-      //if (dist(b.getPosition()[0], b.getPosition()[1], position[0], position[1]) < range) { //test if bloon is close enough to ice tower
-      //  b.setSpeed(0);
-      //}
+      if (active) {
+        shootCounter = shootTime; //reset shooting
+        if (animationTimer == 0) {//allow animation to show
+          animationTimer = 7;
+        }
+      }
+    }
+    else {
+      shootCounter--;
     }
   }
   
