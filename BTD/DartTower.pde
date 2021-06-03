@@ -13,6 +13,7 @@ public class DartTower extends Tower {
     shootTime = 50;
     shootCounter = 0;
     dartList = new ArrayList<Dart>();
+    type = "DART";
   }
   void display() {
     ellipseMode(RADIUS);

@@ -7,6 +7,7 @@ abstract class Tower {
   int[] upgrades;
   Bloon target;
   int damage;
+  String type;
   
   abstract void display();
   abstract void shoot();
@@ -54,5 +55,9 @@ abstract class Tower {
   
   boolean getSelected() {
     return selected;
+  }
+  
+  String getType() {
+    return type;
   }
 }

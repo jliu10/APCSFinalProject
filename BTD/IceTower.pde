@@ -13,6 +13,7 @@ public class IceTower extends Tower{
     shootTime = 60; shootCounter = 0;
     active = false;
     animationTimer = 0;
+    type = "ICE";
   }
   
   void display() {
