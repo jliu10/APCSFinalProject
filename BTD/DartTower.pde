@@ -1,6 +1,4 @@
 public class DartTower extends Tower {
-  int shootTime;
-  int shootCounter;
   ArrayList<Dart> dartList;
   
   DartTower(float Xcor, float Ycor) {
