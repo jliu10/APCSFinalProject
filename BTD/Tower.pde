@@ -2,7 +2,7 @@ abstract class Tower {
   int shootTime;
   int shootCounter;
   float[] position;
-  float range, radius, firerate, direction, totalValue, projectileSpeed;
+  float range, radius, direction, totalValue, projectileSpeed;
   boolean selected;
   int[] upgrades;
   Bloon target;
