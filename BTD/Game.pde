@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Game {
-  int lives, money, difficulty, placeTower, roundStartTime, roundNumber, counter, currentTime;
+  int lives, money, difficulty, placeTower, roundNumber, counter, currentTime;
   // don't need roundStartTime?
   Round currentRound;
   boolean done, quitConfirm, wasPaused, placing, valid;
@@ -24,7 +24,7 @@ public class Game {
     lastSpeed = 1;
     difficulty = diff;
     roundNumber = 1;
-    counter = 1000;
+    // counter = 1000;
     
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
@@ -204,7 +204,7 @@ public class Game {
     
     fill(0);
     textSize(24);
-    text("Bloon Count: " + bloons.size(), 0, 20);
+    text("Bloon Count: " + bloons.size() + "\nCounter: " + currentTime, 0, 20);
   }
   
   boolean isDone() {
@@ -262,8 +262,8 @@ public class Game {
     }
     else if(startBattle.getActive() && startBattle.getHovering()) {
       println("battle started");
-      roundStartTime = millis();
-      println("start time: " + roundStartTime);
+      currentTime = 0;
+      counter = 1000;
       currentRound = new Round(roundNumber);
       startBattle.toggle();
     }
@@ -317,10 +317,6 @@ public class Game {
   
   ArrayList<Bloon> getBloons() {
     return bloons;
-  }
-  
-  int getStartTime() {
-    return roundStartTime;
   }
   
   void nextRound() {
