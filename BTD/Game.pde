@@ -51,13 +51,17 @@ public class Game {
   
   void run() {    
     // millis() is imprecise, so we have own timer
-    if(counter > 0) {
+    
+    
+    if(currentRound != null && !currentRound.getDone()) {
+      
+      if(counter > 0) {
       counter --;
       currentTime ++;
+      }
+      else counter = 1000;
+      currentRound.run();
     }
-    else counter = 1000;
-    
-    if(currentRound != null && !currentRound.getDone()) currentRound.run();
     
     // spawning bloons
     for(int i = 0; i < spawns.size(); i++) {
@@ -204,7 +208,7 @@ public class Game {
     
     fill(0);
     textSize(24);
-    text("Bloon Count: " + bloons.size() + "\nCounter: " + currentTime, 0, 20);
+    text("Bloon Count: " + bloons.size() + "\nTime: " + currentTime, 0, 20);
   }
   
   boolean isDone() {
@@ -271,7 +275,7 @@ public class Game {
       println("sold");
       sellTower(selectedTower);
     }
-    else if(buyDartTower.getHovering()) {
+    else if(buyDartTower.getHovering() && money >= 170) {
       println("bought dart tower");
       placing = true;
       placeTower = 0;
