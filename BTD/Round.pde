@@ -13,7 +13,7 @@ public class Round {
       case 2:
         addSpawn(5, 0, 0, 100, 200);
         addSpawn(5, 1, 0, 150, 700);
-        endTime = 1750;
+        endTime = 1300;
         break;
     }
   }
