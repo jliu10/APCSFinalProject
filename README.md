@@ -29,3 +29,4 @@ DEV LOG:
 - Justin 2021-05-31: Developed tower placement and round and bloon spawning system
 - Srinath 2021-05-31: Fixed shoot() in IceTower; created animation for IceTower and frozen bloons; created class Dart and DartTower
 - Justin 2021-06-01: Made "Sell" button
+- Srinath 2021-06-01: Fixed Dart and DartTower to make Dart move in the correct direction towards target bloon
