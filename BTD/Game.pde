@@ -11,19 +11,19 @@ public class Game {
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
-  ArrayDeque<Button> buttonQ;
+  ArrayDeque<Button> buttonQ, dartTowerUpgrades;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
     towers = new ArrayList<Tower>();
     buttonQ = new ArrayDeque<Button>();
+    dartTowerUpgrades = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     spawns = new ArrayList<int[]>();
     speed = 1;
     lastSpeed = 1;
     difficulty = diff;
     roundNumber = 1;
-    // counter = 1000;
     
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
@@ -44,10 +44,8 @@ public class Game {
     buttonQ.add(buyIceTower);
     buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
-    //bloons.add(new Bloon(gameTrack.getStart(), 2, false));
-    
-    //Testing IceTower
-    //towers.add(new IceTower(525,350));
+    dartTowerUpgrades.add(buyLongRangeDarts);
+    dartTowerUpgrades.add(buyPiercingDarts);
   }
   
   void run() {    
@@ -120,9 +118,31 @@ public class Game {
       for(Button b : buttonQ) {
         if(b.getActive()) b.toggle();
       }
+      /*
+      switch(selectedTower.getType()) {
+        case 0: // dart tower
+          for(Button b : dartTowerUpgrades) {
+            if(!b.getActive()) b.toggle();
+            switch(upgrades[0]) {
+            }
+          }
+          break;
+      }
+      */
     }
-    else for(Button b : buttonQ) {
-        if(!b.getActive()) b.toggle();   
+    else {
+      /*
+      switch(selectedTower.getType()) {
+        case 0: // dart tower
+          for(Button b : dartTowerUpgrades) {
+            if(b.getActive()) b.toggle();
+          }
+          break;
+      }
+      */
+      for(Button b : buttonQ) {
+        if(!b.getActive()) b.toggle();
+      }
     }
     
     if(lives <= 0) done = true;
@@ -293,6 +313,10 @@ public class Game {
       println("bought ice tower");
       placing = true;
       placeTower = 1;
+    }
+    else if(buyLongRangeDarts.getHovering() && money >= 90) {
+    }
+    else if(buyPiercingDarts.getHovering() && money >= 205) {
     }
     else if(placing && valid && mouseX < width - 250) {
       placing = false;
