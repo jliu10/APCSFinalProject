@@ -6,6 +6,7 @@ public class Bloon {
   color bloonColor;
   boolean camo;
   int FreezeCounter;
+  boolean isFrozen; int freezeMultiplier;
   int health;
   
   Bloon(Block b, int type, boolean isCamo) {
@@ -13,7 +14,7 @@ public class Bloon {
     pos = new float[]{b.getX(), b.getY()};
     bloonType = type;
     camo = isCamo;
-    FreezeCounter = 0;
+    FreezeCounter = 0; isFrozen = false; freezeMultiplier = 1;//start out not frozen
     switch(type) {
       case 0: //red bloon
         bloonColor = color(227, 0, 0);
@@ -44,16 +45,17 @@ public class Bloon {
   boolean isCamo() {
     return camo;
   }
+  
   int getHealth() {
     return health;
   }
   void setHealth(int newHealth) {
     health = newHealth;
   }
+  
   void setSpeed(float n) {
     speed = n;
   }
-  
   float getSpeed() {
     return speed;
   }
@@ -61,7 +63,6 @@ public class Bloon {
   void bloonPop() {
     bloonType--;
   }
-  
   int getType() {
     return bloonType;
   }
@@ -69,15 +70,26 @@ public class Bloon {
     currentGame.addMoney(1);
     bloonType = newType;
   }
+  
   float[] getPosition() { //get position of bloon
     return pos;
   }
+  
   int getFreezeCounter() {
     return FreezeCounter;
   }
   void setFreezeCounter(int num) {
     FreezeCounter = num;
   }
+  void setFrozen() {
+    isFrozen = true;
+    FreezeCounter = 30;
+    freezeMultiplier = 0;
+  }
+  boolean getFrozen() {
+    return isFrozen;
+  }
+  
   void move() {
     float xDiff = pos[0] - currentBlock.getNextBlock().getX();
     float yDiff = pos[1] - currentBlock.getNextBlock().getY();
@@ -92,10 +104,8 @@ public class Bloon {
        
      }
     */
-    if (FreezeCounter <= 30) {
-      pos[0] += speed * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
-      pos[1] += speed * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
-    }
+    pos[0] += speed * freezeMultiplier * currentGame.getSpeed() * cos(radians(currentBlock.getDirection()));
+    pos[1] += speed * freezeMultiplier * currentGame.getSpeed() * sin(radians(currentBlock.getDirection()));
   }
   
   void display() {
@@ -135,10 +145,15 @@ public class Bloon {
     strokeWeight(2);
     line(pos[0], pos[1] + 37/2, pos[0], pos[1] + 37/2 + 15);
     ellipse(pos[0], pos[1], 25, 35);
-    if (FreezeCounter > 30) {
+    if (isFrozen) {//freezing mechanics
       stroke(178,255,256);
       fill(178,255,256);
       arc(pos[0], pos[1], 25, 35, PI, 2*PI);
+      FreezeCounter--;
+      if (FreezeCounter == 0) {
+        isFrozen = false;
+        freezeMultiplier = 1;
+      }
     }
   }
 }
