@@ -7,14 +7,20 @@ public class DartTower extends Tower {
     selected = false;
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
-    radius = 20; range = 200; direction = 0;
+    radius = 20; range = 170; direction = 0;
     totalValue = 170; projectileSpeed = 8;
     shootTime = 50;
     shootCounter = 0;
     dartList = new ArrayList<Dart>();
     type = "DART";
   }
+  
   void display() {
+    switch(upgrades[0]) {
+      case 1:
+        range = 250;
+        break;
+    }
     ellipseMode(RADIUS);
     stroke(0);
     if (selected) {
