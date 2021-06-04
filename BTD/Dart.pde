@@ -20,8 +20,8 @@ public class Dart extends Projectile {
       move();
       float Xcor = position[0]; float Ycor = position[1];
       float d = radians(direction+90);
-      bezier(Xcor + 6*sin(d),Ycor - 6*cos(d), Xcor - 18*cos(d)-24*sin(d), Ycor + 24*cos(d)-18*sin(d), 
-      Xcor + 18*cos(d)-24*sin(d), Ycor + 24*cos(d)+18*sin(d), Xcor + 6*sin(d), Ycor - 6*cos(d));
+      bezier(Xcor + 5*sin(d),Ycor - 5*cos(d), Xcor - 15*cos(d)-25*sin(d), Ycor + 25*cos(d)-15*sin(d), 
+      Xcor + 15*cos(d)-25*sin(d), Ycor + 25*cos(d)+15*sin(d), Xcor + 5*sin(d), Ycor - 5*cos(d));
       hitBloon(currentGame.getBloons());
     }
   }
