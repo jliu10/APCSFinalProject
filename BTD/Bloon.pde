@@ -146,22 +146,22 @@ public class Bloon {
         break;
     }
     move();
-    println(currentlyPopped);
-    if (currentlyPopped) {
-      popTimer--;
-      beginShape();
-      curveVertex(40, 40); 
-      curveVertex(40, 40); 
-      curveVertex(80, 60);
-      curveVertex(100, 100);
-      curveVertex(60, 120);
-      curveVertex(50, 150); 
-      curveVertex(50, 150);
-      endShape();
-      if (popTimer == 0) {
-        currentlyPopped = false;
-      }
-    }
+    //println(currentlyPopped);
+    //if (currentlyPopped) {
+      //popTimer--;
+      //beginShape();
+      //curveVertex(40, 40); 
+      //curveVertex(40, 40); 
+      //curveVertex(80, 60);
+      //curveVertex(100, 100);
+      //curveVertex(60, 120);
+      //curveVertex(50, 150); 
+      //curveVertex(50, 150);
+      //endShape();
+      //if (popTimer == 0) {
+        //currentlyPopped = false;
+      //}
+    //}
     ellipseMode(CENTER);
     fill(bloonColor);
     stroke(0);
