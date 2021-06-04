@@ -6,7 +6,6 @@ public class DartTower extends Tower {
     position[0] = Xcor; position[1] = Ycor;
     selected = false;
     upgrades = new int[2];
-    projectileSpeed = 3;
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 200; direction = 0;
     totalValue = 170; projectileSpeed = 8;
