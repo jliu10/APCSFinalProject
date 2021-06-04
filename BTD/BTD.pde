@@ -1,11 +1,11 @@
 int page, difficulty, map;
 Game currentGame;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, sell, buyLongRangeDarts, buyPiercingDarts;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, buyCannon, sell, buyLongRangeDarts, buyPiercingDarts;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
 ArrayList<Button> instructionsButtons = new ArrayList<Button>();
-PImage dartImage, iceImage, longRangeDartsImage, piercingDartsImage;
+PImage dartImage, iceImage, cannonImage, longRangeDartsImage, piercingDartsImage;
 
 color WHITE = color(255);
 color BLACK = color(0);
@@ -37,12 +37,14 @@ void setup() {
   gameButtons.add(startBattle);
   gameButtons.add(buyDartTower);
   gameButtons.add(buyIceTower);
+  gameButtons.add(buyCannon);
   gameButtons.add(sell);
   gameButtons.add(buyLongRangeDarts);
   gameButtons.add(buyPiercingDarts);
   
   dartImage = loadImage("Dart.png");
   iceImage = loadImage("Ice.png");
+  cannonImage = loadImage("Cannon.png");
   longRangeDartsImage = loadImage("LongRangeDarts.png");
   piercingDartsImage = loadImage("PiercingDarts.png");
   
