@@ -34,6 +34,7 @@ public class Game {
     sell = new Button("SELL", width - 55, height - 100, 100, 50, 40, color(255, 170, 0), false);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
     buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
+    buyCannon = new BuyButton("Cannon", "585", width - 187.5, 260, 100, 100, 12, 24, BLUE, true, cannonImage);
     buyLongRangeDarts = new BuyButton("Long Range", "$90", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, longRangeDartsImage);
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
     
@@ -42,7 +43,8 @@ public class Game {
     
     buttonQ.add(buyDartTower);
     buttonQ.add(buyIceTower);
-    buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
+    buttonQ.add(buyCannon);
+    // buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
     dartTowerUpgrades.add(buyLongRangeDarts);
     dartTowerUpgrades.add(buyPiercingDarts);
@@ -118,17 +120,9 @@ public class Game {
       for(Button b : buttonQ) {
         if(b.getActive()) b.toggle();
       }
-      /*
-      switch(selectedTower.getType()) {
-        case 0: // dart tower
-          for(Button b : dartTowerUpgrades) {
-            if(!b.getActive()) b.toggle();
-            switch(upgrades[0]) {
-            }
-          }
-          break;
-      }
-      */
+      
+      
+      
     }
     else {
       /*
@@ -177,6 +171,11 @@ public class Game {
             noStroke();
             circle(mouseX, mouseY, 200);
             break;
+          case 2: // cannon
+            circle(mouseX, mouseY, 20);
+            noStroke();
+            circle(mouseX, mouseY, 200);
+            break;
         }
       }
     }
@@ -187,8 +186,35 @@ public class Game {
     strokeWeight(2);
     rect(width, height, width - 251, 0);
     
-    // TOWER SELECTION STUFF HERE
-    //buyDartTower.display();
+    // UPGRADES
+    if(selectedTower != null) {
+      fill(0, 150, 0);
+      rectMode(CENTER);
+      rect(width - 187.5, 155, 100, 100, 8);
+      rect(width - 62.5, 155, 100, 100, 8);
+      fill(255);
+      textAlign(CENTER);
+      textLeading(24);
+      switch(selectedTower.getType()) {
+        case "DART": // dart tower
+          textSize(14);
+          text("BOUGHT\nLONG RANGE", width - 187.5, 148);
+          textSize(20);
+          text("BOUGHT\nPIERCING", width - 62.5, 143);
+          for(Button b : dartTowerUpgrades) {
+            if(!b.getActive()) b.toggle();
+          }
+          if(selectedTower.getUpgrades()[0] > 0) buyLongRangeDarts.toggle();
+            // continue cascade if we end up having more upgrade tiers
+          if(selectedTower.getUpgrades()[1] > 0) buyPiercingDarts.toggle();
+          for(Button b : dartTowerUpgrades) {
+            b.display();
+          }
+          break;
+      }
+    }
+    
+    // TOWER SELECTION SHOP
     for(Button b : buttonQ) {
       b.display();
     }
@@ -314,9 +340,17 @@ public class Game {
       placing = true;
       placeTower = 1;
     }
+    else if(buyCannon.getHovering() && money >= 585) {
+      placing = true;
+      placeTower = 2;
+    }
     else if(buyLongRangeDarts.getHovering() && money >= 90) {
+      if(selectedTower != null) selectedTower.upgrade(0);
+      buyLongRangeDarts.toggle();
     }
     else if(buyPiercingDarts.getHovering() && money >= 205) {
+      if(selectedTower != null) selectedTower.upgrade(1);
+      buyPiercingDarts.toggle();
     }
     else if(placing && valid && mouseX < width - 250) {
       placing = false;
@@ -328,6 +362,10 @@ public class Game {
         case 1: // ice tower
           towers.add(new IceTower(mouseX, mouseY));
           money -= 255;
+          break;
+        case 2: // cannon
+          towers.add(new Cannon(mouseX, mouseY));
+          money -= 585;
           break;
       }
     }
