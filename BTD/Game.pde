@@ -39,7 +39,7 @@ public class Game {
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
     
     lives = 100;
-    money = 650;
+    money = 9999;
     
     buttonQ.add(buyDartTower);
     buttonQ.add(buyIceTower);
