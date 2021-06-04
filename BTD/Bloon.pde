@@ -8,12 +8,14 @@ public class Bloon {
   int FreezeCounter;
   boolean isFrozen; int freezeMultiplier;
   int health;
+  boolean currentlyPopped; int popTimer;
   
   Bloon(Block b, int type, boolean isCamo) {
     currentBlock = b;
     pos = new float[]{b.getX(), b.getY()};
     bloonType = type;
     camo = isCamo;
+    currentlyPopped = false; popTimer = 0;
     FreezeCounter = 0; isFrozen = false; freezeMultiplier = 1;//start out not frozen
     switch(type) {
       case 0: //red bloon
@@ -60,9 +62,14 @@ public class Bloon {
     return speed;
   }
   
-  void bloonPop() {
-    bloonType--;
+  void bloonPop(int damage) {
+    bloonType -= damage;
+    health -= damage;
+    currentGame.addMoney(1);
+    currentlyPopped = true;
+    popTimer = 10;
   }
+  
   int getType() {
     return bloonType;
   }
@@ -111,7 +118,7 @@ public class Bloon {
   void display() {
     switch(bloonType) {
       case 0: //red bloon
-        if (FreezeCounter > 30) {
+        if (FreezeCounter > 0) {
           bloonColor = color(227, 50, 50);
         }
         else {
@@ -120,7 +127,7 @@ public class Bloon {
         //speed = 1;
         break;
       case 1: //blue bloon
-        if (FreezeCounter > 30) {
+        if (FreezeCounter > 0) {
           bloonColor = color(50, 50, 227);
         }
         else {
@@ -129,7 +136,7 @@ public class Bloon {
         //speed = 1.4;
         break;
       case 2: //green bloon
-        if (FreezeCounter > 30) {
+        if (FreezeCounter > 0) {
           bloonColor = color(50, 227, 50);
         }
         else {
@@ -139,6 +146,22 @@ public class Bloon {
         break;
     }
     move();
+    println(currentlyPopped);
+    if (currentlyPopped) {
+      popTimer--;
+      beginShape();
+      curveVertex(40, 40); 
+      curveVertex(40, 40); 
+      curveVertex(80, 60);
+      curveVertex(100, 100);
+      curveVertex(60, 120);
+      curveVertex(50, 150); 
+      curveVertex(50, 150);
+      endShape();
+      if (popTimer == 0) {
+        currentlyPopped = false;
+      }
+    }
     ellipseMode(CENTER);
     fill(bloonColor);
     stroke(0);
