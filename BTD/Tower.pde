@@ -33,6 +33,7 @@ abstract class Tower {
   void upgrade(int path) {
     if (upgrades[path] < 2) {
       upgrades[path]++;
+      println("upgraded");
     }
   }
   void findTarget() {
