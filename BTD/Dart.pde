@@ -31,6 +31,10 @@ public class Dart extends Projectile {
     position[1] += speed * currentGame.getSpeed() * sin(radians(direction));
   }
   
+  float[] getPosition() {
+    return position;
+  }
+  
   int getHealth() {
     return health;
   }
@@ -41,8 +45,9 @@ public class Dart extends Projectile {
       float xDiff = bloonPosition[0] - position[0]; float yDiff = bloonPosition[1] - position[1];
       if (xDiff*xDiff + yDiff * yDiff < 400) {
         health -= b.getHealth();
-        b.setType(b.getType() - damage);
-        b.setHealth(b.getHealth() - damage);
+        if (!b.getFrozen()) {
+          b.bloonPop(damage);
+        }
         if (health == 0) {
           return true;
         }
