@@ -342,11 +342,11 @@ public class Game {
       placing = true;
       placeTower = 2;
     }
-    else if(buyLongRangeDarts.getHovering() && money >= 90) {
+    else if(buyLongRangeDarts.getHovering() && buyLongRangeDarts.getActive() && money >= 90) {
       if(selectedTower != null) selectedTower.upgrade(0);
       buyLongRangeDarts.toggle();
     }
-    else if(buyPiercingDarts.getHovering() && money >= 205) {
+    else if(buyPiercingDarts.getHovering() && buyPiercingDarts.getActive() && money >= 205) {
       if(selectedTower != null) selectedTower.upgrade(1);
       buyPiercingDarts.toggle();
     }
