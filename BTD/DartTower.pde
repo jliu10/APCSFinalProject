@@ -42,10 +42,17 @@ public class DartTower extends Tower {
     shoot();
     for (int i = 0; i < dartList.size(); i++) {
       Dart d = dartList.get(i);
-      if (d.getHealth() > 0) {
+      float[] dartPos = d.getPosition();
+      if (d.getHealth() > 0 || (dartPos[0] < 1050 && dartPos[0] > 0 && dartPos[1] < 700 && dartPos[1] > 0)) {
         d.display();
       }
-      else if (d.getHealth() == 0) {
+      else if (dartPos[0] >= 1050 || dartPos[0] <= 0 || dartPos[1] >= 700 || dartPos[1] <= 0) {//remove dart if it is out of bounds
+        d = null;
+        dartList.remove(i);
+        i--;
+      }
+      else if (d.getHealth() == 0) {//remove dart when health is 0
+        d = null;
         dartList.remove(i);
         i--;
       }
