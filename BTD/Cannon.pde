@@ -1,6 +1,7 @@
 public class Cannon extends Tower {
   float direction;
   float boomRadius; //size of the explosion of a cannonball
+  float bombSize; //how big each cannonball will be
   ArrayList<CannonBall> BallList;
   
   Cannon(float Xcor, float Ycor) {
@@ -10,10 +11,10 @@ public class Cannon extends Tower {
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 200; direction = 0;
-    totalValue = 170; projectileSpeed = 5;
+    totalValue = 585; projectileSpeed = 5;
     shootTime = 75;
     shootCounter = 0;
-    boomRadius = 50;
+    boomRadius = 50; bombSize = 10;
     BallList = new ArrayList<CannonBall>();
     type = "CANNON";
   }
@@ -25,16 +26,22 @@ public class Cannon extends Tower {
       fill(120,50);
       ellipse(position[0],position[1],range,range);
     }
-    fill(110,38,14);
-    ellipse(position[0], position[1], radius, radius);
+    fill(0);
+    float Xcor = position[0]; float Ycor = position[1];
+    float d = radians(direction-90);
+    bezier(Xcor - 15*cos(d)-40*sin(d), Ycor + 40*cos(d) - 15*sin(d), Xcor - 40*cos(d)+40*sin(d), Ycor - 40*sin(d) - 40*cos(d), 
+    Xcor + 40*cos(d) + 40*sin(d), Ycor + 40*sin(d) - 40*cos(d), Xcor + 15*cos(d)-40*sin(d), Ycor + 40*cos(d)+15*sin(d));
+    //ellipse(position[0], position[1], radius, radius);
+    bezier(Xcor + 5*sin(d),Ycor - 5*cos(d), Xcor - 15*cos(d)-25*sin(d), Ycor + 25*cos(d)-15*sin(d), 
+      Xcor + 15*cos(d)-25*sin(d), Ycor + 25*cos(d)+15*sin(d), Xcor + 5*sin(d), Ycor - 5*cos(d));
     select(); deselect();
     shoot();
     for (int i = 0; i < BallList.size(); i++) {
-      CannonBall d = BallList.get(i);
-      if (d.getHealth() > 0) {
-        d.display();
+      CannonBall ball = BallList.get(i);
+      if (ball.getHealth() > 0) {
+        ball.display();
       }
-      else if (d.getHealth() == 0) {
+      else if (ball.getHealth() == 0) {
         BallList.remove(i);
         i--;
       }
@@ -45,8 +52,20 @@ public class Cannon extends Tower {
     if (shootCounter == 0) {
       for(Bloon b : currentGame.getBloons()) {
         if (bloonInRange(b) && shootCounter == 0) {
-          CannonBall d = new CannonBall(position[0], position[1], b.getPosition()[0], b.getPosition()[1], projectileSpeed, boomRadius);
+          float Xcor = position[0]; float Ycor = position[1];
+          float targetX = b.getPosition()[0]; float targetY = b.getPosition()[1];
+          float Xdiff = targetX - Xcor; float Ydiff = targetY - Ycor; //changing the direction of the cannon
+          float direction1 = asin(Ydiff/sqrt(Xdiff*Xdiff + Ydiff*Ydiff));
+          if (Xdiff >= 0) {
+            direction = degrees(direction1); //want direction in degrees
+          }
+          else {
+            direction = 180 - degrees(direction1);
+          } 
+          CannonBall d = new CannonBall(Xcor, Ycor, targetX, targetY, projectileSpeed, boomRadius, bombSize);
           BallList.add(d);
+          
+          
           shootCounter = shootTime;
         }
       }
