@@ -60,4 +60,8 @@ abstract class Tower {
   String getType() {
     return type;
   }
+  
+  int[] getUpgrades() {
+    return upgrades;
+  }
 }
