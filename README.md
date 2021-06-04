@@ -31,3 +31,4 @@ DEV LOG:
 - Justin 2021-06-01: Made "Sell" button
 - Srinath 2021-06-01: Fixed Dart and DartTower to make Dart move in the correct direction towards target bloon
 - Justin 2021-06-03: Added upgrades for Dart Tower; added money-earning
+- Srinath 2021-06-03: Created Cannon and CannonBall; Fixed freezing issues when a Bloon is in range of multiple IceTowers; Added better visuals to Dart class
