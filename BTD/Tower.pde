@@ -36,8 +36,7 @@ abstract class Tower {
       println("upgraded " + path);
     }
   }
-  void findTarget() {
-  }
+  
   float getValue() {
     return totalValue;
   }
