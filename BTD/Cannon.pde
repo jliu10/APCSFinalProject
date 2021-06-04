@@ -11,10 +11,10 @@ public class Cannon extends Tower {
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 200; direction = 0;
-    totalValue = 585; projectileSpeed = 5;
+    totalValue = 585; projectileSpeed = 7;
     shootTime = 75;
     shootCounter = 0;
-    boomRadius = 50; bombSize = 10;
+    boomRadius = 60; bombSize = 10;
     BallList = new ArrayList<CannonBall>();
     type = "CANNON";
   }
@@ -31,9 +31,6 @@ public class Cannon extends Tower {
     float d = radians(direction-90);
     bezier(Xcor - 15*cos(d)-40*sin(d), Ycor + 40*cos(d) - 15*sin(d), Xcor - 40*cos(d)+40*sin(d), Ycor - 40*sin(d) - 40*cos(d), 
     Xcor + 40*cos(d) + 40*sin(d), Ycor + 40*sin(d) - 40*cos(d), Xcor + 15*cos(d)-40*sin(d), Ycor + 40*cos(d)+15*sin(d));
-    //ellipse(position[0], position[1], radius, radius);
-    bezier(Xcor + 5*sin(d),Ycor - 5*cos(d), Xcor - 15*cos(d)-25*sin(d), Ycor + 25*cos(d)-15*sin(d), 
-      Xcor + 15*cos(d)-25*sin(d), Ycor + 25*cos(d)+15*sin(d), Xcor + 5*sin(d), Ycor - 5*cos(d));
     select(); deselect();
     shoot();
     for (int i = 0; i < BallList.size(); i++) {
