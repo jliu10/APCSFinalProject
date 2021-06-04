@@ -1,9 +1,9 @@
 public class Dart extends Projectile {
   
-  Dart(float Xcor, float Ycor, float targetX, float targetY, float dartSpeed) {
+  Dart(float Xcor, float Ycor, float targetX, float targetY, float dartSpeed, int dmg, int hp) {
     position = new float[2];
     position[0] = Xcor; position[1] = Ycor;
-    damage = 1; health = 1; speed = dartSpeed;
+    damage = dmg; health = hp; speed = dartSpeed;
     float Xdiff = targetX - Xcor; float Ydiff = targetY - Ycor;
     float direction1 = asin(Ydiff/sqrt(Xdiff*Xdiff + Ydiff*Ydiff));
     if (Xdiff >= 0) {
@@ -40,9 +40,9 @@ public class Dart extends Projectile {
       float[] bloonPosition = b.getPosition();
       float xDiff = bloonPosition[0] - position[0]; float yDiff = bloonPosition[1] - position[1];
       if (xDiff*xDiff + yDiff * yDiff < 400) {
-        b.setType(b.getType() - 1);
-        b.setHealth(b.getHealth() - 1);
-        health -= 1;
+        health -= b.getHealth();
+        b.setType(b.getType() - damage);
+        b.setHealth(b.getHealth() - damage);
         if (health == 0) {
           return true;
         }

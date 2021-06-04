@@ -1,5 +1,6 @@
 public class DartTower extends Tower {
   ArrayList<Dart> dartList;
+  int health;
   
   DartTower(float Xcor, float Ycor) {
     position = new float[2];
@@ -13,12 +14,20 @@ public class DartTower extends Tower {
     shootCounter = 0;
     dartList = new ArrayList<Dart>();
     type = "DART";
+    damage = 1;
+    health = 1;
   }
   
   void display() {
     switch(upgrades[0]) {
       case 1:
         range = 250;
+        break;
+    }
+    switch(upgrades[1]) {
+      case 1:
+        damage = 2;
+        health = 2;
         break;
     }
     ellipseMode(RADIUS);
@@ -55,7 +64,7 @@ public class DartTower extends Tower {
     if (shootCounter == 0) {
       for(Bloon b : currentGame.getBloons()) {
         if (bloonInRange(b) && shootCounter == 0) {
-          Dart d = new Dart(position[0], position[1], b.getPosition()[0], b.getPosition()[1], projectileSpeed);
+          Dart d = new Dart(position[0], position[1], b.getPosition()[0], b.getPosition()[1], projectileSpeed, damage, health);
           dartList.add(d);
           shootCounter = shootTime;
         }
