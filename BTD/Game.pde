@@ -34,7 +34,7 @@ public class Game {
     sell = new Button("SELL", width - 55, height - 100, 100, 50, 40, color(255, 170, 0), false);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
     buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
-    buyCannon = new BuyButton("Cannon", "585", width - 187.5, 260, 100, 100, 12, 24, BLUE, true, cannonImage);
+    buyCannon = new BuyButton("Cannon", "$585", width - 187.5, 260, 100, 100, 12, 24, BLUE, true, cannonImage);
     buyLongRangeDarts = new BuyButton("Long Range", "$90", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, longRangeDartsImage);
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
     
@@ -121,8 +121,6 @@ public class Game {
         if(b.getActive()) b.toggle();
       }
       
-      
-      
     }
     else {
       /*
@@ -164,7 +162,7 @@ public class Game {
           case 0: // dart tower
             circle(mouseX, mouseY, 20);
             noStroke();
-            circle(mouseX, mouseY, 200);
+            circle(mouseX, mouseY, 170);
             break;
           case 1: // ice tower
             circle(mouseX, mouseY, 20);
