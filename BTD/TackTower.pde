@@ -44,7 +44,7 @@ public class TackTower extends Tower {
       Tack t = tackList.get(i);
       float[] tackPos = t.getPosition();
       float xDiff = tackPos[0] - position[0]; float yDiff = tackPos[1] - position[1];
-      if (t.getHealth() > 0 || (tackPos[0] < 1050 && tackPos[0] > 0 && tackPos[1] < 700 && tackPos[1] > 0)) {
+      if (t.getHealth() > 0 && (xDiff * xDiff + yDiff * yDiff < range*range)) {
         t.display();
       }
       else if (xDiff * xDiff + yDiff * yDiff > range*range) {//remove tack if it is out of tack tower's range
