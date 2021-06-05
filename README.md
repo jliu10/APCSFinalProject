@@ -33,3 +33,4 @@ DEV LOG:
 - Justin 2021-06-03: Added upgrades for Dart Tower; added money-earning
 - Srinath 2021-06-03: Created Cannon and CannonBall; Fixed freezing issues when a Bloon is in range of multiple IceTowers; Added better visuals to Dart class
 - Justin 2021-06-04: Added upgrades for Cannon; added Tack Tower shop button
+- Srinath 2021-06-04: Created Tack class and TackTower class; Added popping animation for when bloon is popped
