@@ -13,14 +13,14 @@ public class Tack extends Projectile {
       fill(123,63,0);
       move();
       float Xcor = position[0]; float Ycor = position[1];
-      float d = radians(direction+90);
+      float d = radians(direction);
       noFill();
       strokeWeight(2.5);
       beginShape();
       //line(Xcor-5,Ycor+1,Xcor-5,Ycor-1);
       //line(Xcor-5,Ycor,Xcor+5,Ycor); This is the shape when direction = 0
-      line(Xcor-5,Ycor+1,Xcor-5,Ycor-1);
-      line(Xcor-5,Ycor,Xcor+5,Ycor);
+      line(Xcor-5*cos(d)-1*sin(d),Ycor+1*cos(d)-5*sin(d),Xcor-5*cos(d)+1*sin(d),Ycor-1*cos(d)-5*sin(d));
+      line(Xcor-5*cos(d),Ycor-5*sin(d),Xcor+5*cos(d),Ycor+5*sin(d));
       endShape();
       //bezier(Xcor + 5*sin(d),Ycor - 5*cos(d), Xcor - 15*cos(d)-25*sin(d), Ycor + 25*cos(d)-15*sin(d), 
       //Xcor + 15*cos(d)-25*sin(d), Ycor + 25*cos(d)+15*sin(d), Xcor + 5*sin(d), Ycor - 5*cos(d));
