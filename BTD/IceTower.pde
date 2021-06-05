@@ -8,7 +8,7 @@ public class IceTower extends Tower{
     selected = false;
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
-    radius = 20; range = 200; direction = 0; //do not need direction for IceTower
+    radius = 20; range = 100; direction = 0; //do not need direction for IceTower
     totalValue = 255; projectileSpeed = 0; //no projectiles for IceTower
     shootTime = 60; shootCounter = 0;
     active = false;
