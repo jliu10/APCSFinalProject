@@ -76,7 +76,7 @@ public class Game {
     
     for(int i = 0; i < bloons.size(); i++) {
       Bloon b = bloons.get(i);
-      if(b.getType() < 0) {
+      if(b.getType() < 0 && b.getPopTimer() <= 0) {
         bloons.remove(b);
         i--;
       }
