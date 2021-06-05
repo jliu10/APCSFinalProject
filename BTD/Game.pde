@@ -11,13 +11,14 @@ public class Game {
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
-  ArrayDeque<Button> buttonQ, dartTowerUpgrades;
+  ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
     towers = new ArrayList<Tower>();
     buttonQ = new ArrayDeque<Button>();
     dartTowerUpgrades = new ArrayDeque<Button>();
+    cannonUpgrades = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     spawns = new ArrayList<int[]>();
     speed = 1;
@@ -37,6 +38,8 @@ public class Game {
     buyCannon = new BuyButton("Cannon", "$585", width - 187.5, 260, 100, 100, 12, 24, BLUE, true, cannonImage);
     buyLongRangeDarts = new BuyButton("Long Range", "$90", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, longRangeDartsImage);
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
+    buyExtraRangeBombs = new BuyButton("Extra Range", "$200", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, extraRangeBombsImage);
+    buyBiggerBombs = new BuyButton("Bigger Bombs", "$350", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, biggerBombsImage);
     
     lives = 100;
     money = 9999;
@@ -48,6 +51,9 @@ public class Game {
     
     dartTowerUpgrades.add(buyLongRangeDarts);
     dartTowerUpgrades.add(buyPiercingDarts);
+    
+    cannonUpgrades.add(buyExtraRangeBombs);
+    cannonUpgrades.add(buyBiggerBombs);
   }
   
   void run() {    
@@ -167,7 +173,7 @@ public class Game {
           case 1: // ice tower
             circle(mouseX, mouseY, 20);
             noStroke();
-            circle(mouseX, mouseY, 200);
+            circle(mouseX, mouseY, 100);
             break;
           case 2: // cannon
             circle(mouseX, mouseY, 20);
@@ -206,6 +212,21 @@ public class Game {
             // continue cascade if we end up having more upgrade tiers
           if(selectedTower.getUpgrades()[1] > 0) buyPiercingDarts.toggle();
           for(Button b : dartTowerUpgrades) {
+            b.display();
+          }
+          break;
+        case "CANNON": // cannon
+          textSize(14);
+          text("BOUGHT\nEXTRA RANGE", width - 187.5, 148);
+          textSize(14);
+          text("BOUGHT\nBIGGER BOMBS", width - 62.5, 148);
+          for(Button b : cannonUpgrades) {
+            if(!b.getActive()) b.toggle();
+          }
+          if(selectedTower.getUpgrades()[0] > 0) buyExtraRangeBombs.toggle();
+            // continue cascade if we end up having more upgrade tiers
+          if(selectedTower.getUpgrades()[1] > 0) buyBiggerBombs.toggle();
+          for(Button b : cannonUpgrades) {
             b.display();
           }
           break;
@@ -344,11 +365,23 @@ public class Game {
     }
     else if(buyLongRangeDarts.getHovering() && buyLongRangeDarts.getActive() && money >= 90) {
       if(selectedTower != null) selectedTower.upgrade(0);
+      money -= 90;
       buyLongRangeDarts.toggle();
     }
     else if(buyPiercingDarts.getHovering() && buyPiercingDarts.getActive() && money >= 205) {
       if(selectedTower != null) selectedTower.upgrade(1);
+      money -= 205;
       buyPiercingDarts.toggle();
+    }
+    else if(buyExtraRangeBombs.getHovering() && buyExtraRangeBombs.getActive() && money >= 200) {
+      if(selectedTower != null) selectedTower.upgrade(0);
+      money -= 200;
+      buyExtraRangeBombs.toggle();
+    }
+    else if(buyBiggerBombs.getHovering() && buyBiggerBombs.getActive() && money >= 350) {
+      if(selectedTower != null) selectedTower.upgrade(1);
+      money -= 350;
+      buyBiggerBombs.toggle();
     }
     else if(placing && valid && mouseX < width - 250) {
       placing = false;

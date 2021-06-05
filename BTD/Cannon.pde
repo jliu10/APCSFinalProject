@@ -2,6 +2,7 @@ public class Cannon extends Tower {
   float direction;
   float boomRadius; //size of the explosion of a cannonball
   float bombSize; //how big each cannonball will be
+  int health;
   ArrayList<CannonBall> BallList;
   
   Cannon(float Xcor, float Ycor) {
@@ -17,9 +18,23 @@ public class Cannon extends Tower {
     boomRadius = 60; bombSize = 10;
     BallList = new ArrayList<CannonBall>();
     type = "CANNON";
+    health = 1;
   }
   
   void display() {
+    switch(upgrades[0]) {
+      case 1:
+        range = 225;
+        break;
+    }
+    switch(upgrades[1]) {
+      case 1:
+        damage = 2;
+        health = 2;
+        boomRadius = 72;
+        bombSize = 12;
+        break;
+    }
     ellipseMode(RADIUS);
     stroke(0);
     if (selected) {
