@@ -67,7 +67,10 @@ public class Bloon {
     health -= damage;
     currentGame.addMoney(1);
     currentlyPopped = true;
-    popTimer = 10;
+    popTimer = 7;
+  }
+  int getPopTimer() {
+    return popTimer;
   }
   
   int getType() {
@@ -146,22 +149,6 @@ public class Bloon {
         break;
     }
     move();
-    println(currentlyPopped);
-    if (currentlyPopped) {
-      popTimer--;
-      beginShape();
-      curveVertex(40, 40); 
-      curveVertex(40, 40); 
-      curveVertex(80, 60);
-      curveVertex(100, 100);
-      curveVertex(60, 120);
-      curveVertex(50, 150); 
-      curveVertex(50, 150);
-      endShape();
-      if (popTimer == 0) {
-        currentlyPopped = false;
-      }
-    }
     ellipseMode(CENTER);
     fill(bloonColor);
     stroke(0);
@@ -176,6 +163,24 @@ public class Bloon {
       if (FreezeCounter == 0) {
         isFrozen = false;
         freezeMultiplier = 1;
+      }
+    }
+    println(currentlyPopped);
+    if (currentlyPopped) {//pop animation
+      popTimer--;
+      float Xcor = pos[0]; float Ycor = pos[1];
+      fill(255);
+      beginShape();
+      curveVertex(Xcor, Ycor); 
+      curveVertex(Xcor, Ycor); 
+      curveVertex(Xcor + 40, Ycor + 20);
+      curveVertex(Xcor + 60, Ycor + 60);
+      curveVertex(Xcor + 20, Ycor + 80);
+      curveVertex(Xcor + 10, Ycor + 110); 
+      curveVertex(Xcor + 10, Ycor + 110);
+      endShape();
+      if (popTimer == 0) {
+        currentlyPopped = false;
       }
     }
   }
