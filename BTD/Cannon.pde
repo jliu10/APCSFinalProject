@@ -29,8 +29,6 @@ public class Cannon extends Tower {
     }
     switch(upgrades[1]) {
       case 1:
-        damage = 2;
-        health = 2;
         boomRadius = 72;
         bombSize = 12;
         break;
