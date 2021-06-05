@@ -9,8 +9,8 @@ public class TackTower extends Tower {
     upgrades = new int[2];
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 100; direction = 0;
-    totalValue = 170; projectileSpeed = 8;
-    shootTime = 50;
+    totalValue = 400; projectileSpeed = 8;
+    shootTime = 83;
     shootCounter = 0;
     tackList = new ArrayList<Tack>();
     type = "TACK";
@@ -43,10 +43,11 @@ public class TackTower extends Tower {
     for (int i = 0; i < tackList.size(); i++) {
       Tack t = tackList.get(i);
       float[] tackPos = t.getPosition();
+      float xDiff = tackPos[0] - position[0]; float yDiff = tackPos[1] - position[1];
       if (t.getHealth() > 0 || (tackPos[0] < 1050 && tackPos[0] > 0 && tackPos[1] < 700 && tackPos[1] > 0)) {
         t.display();
       }
-      else if (tackPos[0] >= 1050 || tackPos[0] <= 0 || tackPos[1] >= 700 || tackPos[1] <= 0) {//remove tack if it is out of bounds
+      else if (xDiff * xDiff + yDiff * yDiff > range*range) {//remove tack if it is out of tack tower's range
         t = null;
         tackList.remove(i);
         i--;
@@ -63,8 +64,10 @@ public class TackTower extends Tower {
     if (shootCounter == 0) {
       for(Bloon b : currentGame.getBloons()) {
         if (bloonInRange(b) && shootCounter == 0) {
-          Tack t = new Tack(position[0], position[1], projectileSpeed, damage, health, 0);
-          tackList.add(t);
+          for (int i = 0; i < 8; i++) {
+            Tack t = new Tack(position[0], position[1], projectileSpeed, damage, health, 45*i);
+            tackList.add(t);
+          }
           shootCounter = shootTime;
         }
       }
