@@ -67,7 +67,7 @@ public class Bloon {
     health -= damage;
     currentGame.addMoney(1);
     currentlyPopped = true;
-    popTimer = 7;
+    popTimer = 5;
   }
   int getPopTimer() {
     return popTimer;
@@ -169,15 +169,25 @@ public class Bloon {
       popTimer--;
       float Xcor = pos[0]; float Ycor = pos[1];
       fill(255);
+      float c = 1; float par = 11;
+      stroke(0,0);
       beginShape();
-      bezier(Xcor - 11, Ycor + 12, Xcor - 5, Ycor + 4, 
-      Xcor + 5, Ycor + 4, Xcor + 11, Ycor + 12);
-      bezier(Xcor + 12, Ycor + 11, Xcor + 4, Ycor + 5, 
-      Xcor + 4, Ycor - 5, Xcor + 12, Ycor - 11);
-      bezier(Xcor + 11, Ycor - 12, Xcor + 5, Ycor - 4, 
-      Xcor - 5, Ycor - 4, Xcor - 11, Ycor - 12);
-      bezier(Xcor - 12, Ycor - 11, Xcor - 4, Ycor - 5, 
-      Xcor - 4, Ycor + 5, Xcor - 12, Ycor + 11);
+      vertex(Xcor - par*c, Ycor + par*c);
+      vertex(Xcor + par*c, Ycor + par*c);
+      vertex(Xcor + par*c, Ycor - par*c);
+      vertex(Xcor - par*c, Ycor - par*c);
+      endShape();
+      fill(bloonColor);
+      stroke(0);
+      beginShape();
+      bezier(Xcor - par*c, Ycor + par*c, Xcor - 5*c, Ycor + 4*c, 
+      Xcor + 5*c, Ycor + 4*c, Xcor + par*c, Ycor + par*c);
+      bezier(Xcor + par*c, Ycor + par*c, Xcor + 4*c, Ycor + 5*c, 
+      Xcor + 4*c, Ycor - 5*c, Xcor + par*c, Ycor - par*c);
+      bezier(Xcor + par*c, Ycor - par*c, Xcor + 5*c, Ycor - 4*c, 
+      Xcor - 5*c, Ycor - 4*c, Xcor - par*c, Ycor - par*c);
+      bezier(Xcor - par*c, Ycor - par*c, Xcor - 4*c, Ycor - 5*c, 
+      Xcor - 4*c, Ycor + 5*c, Xcor - par*c, Ycor + par*c);
       endShape();
       //beginShape();
       //curveVertex(Xcor-20, Ycor-20); 
