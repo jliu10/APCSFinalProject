@@ -165,20 +165,29 @@ public class Bloon {
         freezeMultiplier = 1;
       }
     }
-    println(currentlyPopped);
     if (currentlyPopped) {//pop animation
       popTimer--;
       float Xcor = pos[0]; float Ycor = pos[1];
       fill(255);
       beginShape();
-      curveVertex(Xcor, Ycor); 
-      curveVertex(Xcor, Ycor); 
-      curveVertex(Xcor + 40, Ycor + 20);
-      curveVertex(Xcor + 60, Ycor + 60);
-      curveVertex(Xcor + 20, Ycor + 80);
-      curveVertex(Xcor + 10, Ycor + 110); 
-      curveVertex(Xcor + 10, Ycor + 110);
+      bezier(Xcor - 11, Ycor + 12, Xcor - 5, Ycor + 4, 
+      Xcor + 5, Ycor + 4, Xcor + 11, Ycor + 12);
+      bezier(Xcor + 12, Ycor + 11, Xcor + 4, Ycor + 5, 
+      Xcor + 4, Ycor - 5, Xcor + 12, Ycor - 11);
+      bezier(Xcor + 11, Ycor - 12, Xcor + 5, Ycor - 4, 
+      Xcor - 5, Ycor - 4, Xcor - 11, Ycor - 12);
+      bezier(Xcor - 12, Ycor - 11, Xcor - 4, Ycor - 5, 
+      Xcor - 4, Ycor + 5, Xcor - 12, Ycor + 11);
       endShape();
+      //beginShape();
+      //curveVertex(Xcor-20, Ycor-20); 
+      //curveVertex(Xcor-20, Ycor-20); 
+      //curveVertex(Xcor + 20, Ycor);
+      //curveVertex(Xcor + 40, Ycor + 40);
+      //curveVertex(Xcor, Ycor + 60);
+      //curveVertex(Xcor - 10, Ycor + 90); 
+      //curveVertex(Xcor - 10, Ycor + 90);
+      //endShape();
       if (popTimer == 0) {
         currentlyPopped = false;
       }
