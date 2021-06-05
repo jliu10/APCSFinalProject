@@ -1,11 +1,11 @@
 int page, difficulty, map;
 Game currentGame;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, buyCannon, sell, buyLongRangeDarts, buyPiercingDarts, buyExtraRangeBombs, buyBiggerBombs;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, buyCannon, sell, buyLongRangeDarts, buyPiercingDarts, buyExtraRangeBombs, buyBiggerBombs, buyTackTower;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
 ArrayList<Button> instructionsButtons = new ArrayList<Button>();
-PImage dartImage, iceImage, cannonImage, longRangeDartsImage, piercingDartsImage, extraRangeBombsImage, biggerBombsImage;
+PImage dartImage, iceImage, cannonImage, longRangeDartsImage, piercingDartsImage, extraRangeBombsImage, biggerBombsImage, tackImage;
 
 color WHITE = color(255);
 color BLACK = color(0);
@@ -43,6 +43,9 @@ void setup() {
   gameButtons.add(buyPiercingDarts);
   gameButtons.add(buyExtraRangeBombs); // $200
   gameButtons.add(buyBiggerBombs); // $350
+  gameButtons.add(buyTackTower); // $400
+  
+  
   
   dartImage = loadImage("Dart.png");
   iceImage = loadImage("Ice.png");
@@ -51,6 +54,7 @@ void setup() {
   piercingDartsImage = loadImage("PiercingDarts.png");
   extraRangeBombsImage = loadImage("ExtraRangeBombs.png");
   biggerBombsImage = loadImage("BiggerBombs.png");
+  tackImage = loadImage("TackTower.png");
   
 }
 

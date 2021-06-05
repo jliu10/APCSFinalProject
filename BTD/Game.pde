@@ -40,6 +40,7 @@ public class Game {
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
     buyExtraRangeBombs = new BuyButton("Extra Range", "$200", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, extraRangeBombsImage);
     buyBiggerBombs = new BuyButton("Bigger Bombs", "$350", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, biggerBombsImage);
+    buyTackTower = new BuyButton("Tack", "$400", width - 62.5, 260, 100, 100, 12, 24, BLUE, true, tackImage);
     
     lives = 100;
     money = 9999;
@@ -47,6 +48,7 @@ public class Game {
     buttonQ.add(buyDartTower);
     buttonQ.add(buyIceTower);
     buttonQ.add(buyCannon);
+    buttonQ.add(buyTackTower);
     // buttonQ.add(new BuyButton("Dart3", "$170", width - 187.5, 600, 100, 100, 12, 24, BLUE, true, dartImage));
     
     dartTowerUpgrades.add(buyLongRangeDarts);
@@ -99,6 +101,12 @@ public class Game {
         r = 20;
         break;
       case 1:
+        r = 20;
+        break;
+      case 2:
+        r = 20;
+        break;
+      case 3:
         r = 20;
         break;
     }
@@ -179,6 +187,11 @@ public class Game {
             circle(mouseX, mouseY, 20);
             noStroke();
             circle(mouseX, mouseY, 200);
+            break;
+          case 3: // tack
+            circle(mouseX, mouseY, 20);
+            noStroke();
+            circle(mouseX, mouseY, 100);
             break;
         }
       }
@@ -363,6 +376,10 @@ public class Game {
       placing = true;
       placeTower = 2;
     }
+    else if(buyTackTower.getHovering() && money >= 400) {
+      placing = true;
+      placeTower = 3;
+    }
     else if(buyLongRangeDarts.getHovering() && buyLongRangeDarts.getActive() && money >= 90) {
       if(selectedTower != null) selectedTower.upgrade(0);
       money -= 90;
@@ -397,6 +414,10 @@ public class Game {
         case 2: // cannon
           towers.add(new Cannon(mouseX, mouseY));
           money -= 585;
+          break;
+        case 3: // tack
+          towers.add(new TackTower(mouseX, mouseY));
+          money -= 400;
           break;
       }
     }
