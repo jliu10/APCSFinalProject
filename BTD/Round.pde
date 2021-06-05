@@ -7,18 +7,17 @@ public class Round {
     roundNumber = n;
     switch(roundNumber) {
       case 1:
-        endTime = 1000; // manually calculate the last bloon's spawn time
-        addSpawn(5, 0, 0, 200, 200); // void addSpawn(int num, int type, int isCamo, int spacing, int time)
+        endTime = 850; // manually calculate the last bloon's spawn time
+        addSpawn(14, 0, 0, 50, 200); // void addSpawn(int num, int type, int isCamo, int spacing, int time)
         break;
       case 2:
-        addSpawn(5, 0, 0, 100, 200);
-        addSpawn(5, 1, 0, 150, 700);
-        endTime = 1300;
+        addSpawn(30, 0, 0, 25, 200);
+        endTime = 925;
         break;
       case 3:
-        addSpawn(10, 0, 0, 100, 200);
-        addSpawn(10, 1, 0, 10, 1200);
-        endTime = 1290;
+        addSpawn(15, 0, 0, 25, 200);
+        addSpawn(8, 1, 0, 20, 350);
+        endTime = 550;
         break;
     }
   }
