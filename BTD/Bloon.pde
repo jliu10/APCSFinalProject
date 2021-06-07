@@ -65,6 +65,9 @@ public class Bloon {
   void bloonPop(int damage) {
     bloonType -= damage;
     health -= damage;
+    if (damage > health) {
+      health = 0;
+    }
     currentGame.addMoney(1);
     currentlyPopped = true;
     popTimer = 5;
