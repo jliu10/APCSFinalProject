@@ -26,7 +26,7 @@ public class DartTower extends Tower {
     }
     switch(upgrades[1]) {
       case 1:
-        damage = 2;
+        damage = 1;
         health = 2;
         break;
     }
