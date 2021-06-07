@@ -48,7 +48,7 @@ public class Dart extends Projectile {
         if (!b.getFrozen()) {
           b.bloonPop(damage);
         }
-        if (health == 0) {
+        if (health <= 0) {
           return true;
         }
       }
