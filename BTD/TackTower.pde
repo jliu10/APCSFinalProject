@@ -58,6 +58,18 @@ public class TackTower extends Tower {
         i--;
       }
     }
+    //Tacks drawing on top of tower
+    strokeWeight(2.5);
+    float Xcor = position[0]; float Ycor = position[1]; float d = radians(45);
+    beginShape();
+    line(Xcor-9*cos(d)-3*sin(d),Ycor+3*cos(d)-9*sin(d),Xcor-9*cos(d)+3*sin(d),Ycor-3*cos(d)-9*sin(d));
+    line(Xcor-9*cos(d),Ycor-9*sin(d),Xcor+9*cos(d),Ycor+9*sin(d));
+    endShape();
+    d = radians(135);
+    beginShape();
+    line(Xcor-9*cos(d)-3*sin(d),Ycor+3*cos(d)-9*sin(d),Xcor-9*cos(d)+3*sin(d),Ycor-3*cos(d)-9*sin(d));
+    line(Xcor-9*cos(d),Ycor-9*sin(d),Xcor+9*cos(d),Ycor+9*sin(d));
+    endShape();
   }
   
   void shoot() {
