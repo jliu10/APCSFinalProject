@@ -8,7 +8,7 @@ public class Round {
     switch(roundNumber) {
       case 1:
         endTime = 850; // manually calculate the last bloon's spawn time
-          // if x is the the set of bloons whose last bloon will spawn at the greatest time value, then
+          // if x is the addSpawn() that spawns the last bloon of the round, then
           // the calculation for the endTime is ((num of bloons of x) - 1 ) * spacing of x + time of x
         addSpawn(14, 0, 0, 50, 200); // void addSpawn(int num, int type, int isCamo, int spacing, int time)
         break;
@@ -36,6 +36,23 @@ public class Round {
         addSpawn(15, 2, 0, 30, 250);
         endTime = 670;
         break;
+      case 7:
+        addSpawn(50, 1, 0, 20, 200);
+        endTime = 1180;
+        break;
+      case 8:
+        addSpawn(27, 0, 0, 25, 200);
+        addSpawn(30, 1, 0, 25, 200);
+        endTime = 925;
+        break;
+      case 9:
+        addSpawn(32, 1, 0, 25, 200);
+        addSpawn(15, 2, 0, 20, 250);
+        endTime = 975;
+        break;
+      case 10:
+        addSpawn(32, 2, 0, 25, 200);
+        endTime = 975;
     }
   }
   
