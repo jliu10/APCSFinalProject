@@ -19,17 +19,16 @@ public class TackTower extends Tower {
   }
   
   void display() {
-    //switch(upgrades[0]) {
-    //  case 1:
-    //    range = 250;
-    //    break;
-    //}
-    //switch(upgrades[1]) {
-    //  case 1:
-    //    damage = 2;
-    //    health = 2;
-    //    break;
-    //}
+    switch(upgrades[0]) {
+      case 1:
+        shootTime = 41;
+        break;
+    }
+    switch(upgrades[1]) {
+      case 1:
+        range = 125;
+        break;
+    }
     ellipseMode(RADIUS);
     stroke(0);
     if (selected) {
