@@ -23,16 +23,20 @@ public class Bloon {
         speed = 1;
         health = 1;
         break;
-      case 1: //blue bloon
+      case 1: //blue
         bloonColor = color(0, 0, 227);
         speed = 1.4;
         health = 2;
         break;
-      case 2: //green bloon
+      case 2: //green
         bloonColor = color(0, 227, 0);
         speed = 1.8;
         health = 3;
         break;
+      case 3: // yellow
+        bloonColor = color(255, 230, 0);
+        speed = 3.2;
+        health = 4;
     }
   }
   
