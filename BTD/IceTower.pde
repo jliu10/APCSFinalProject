@@ -17,6 +17,16 @@ public class IceTower extends Tower{
   }
   
   void display() {
+    switch(upgrades[0]) {
+      case 1:
+        range = 125;
+        break;
+    }
+    switch(upgrades[1]) {
+      case 1:
+        // range = 125;
+        break;
+    }
     ellipseMode(RADIUS);
     if (animationTimer > 0) {//show flash of ice when ice tower is freezing
       stroke(0,0);
