@@ -53,6 +53,10 @@ public class Round {
       case 10:
         addSpawn(32, 2, 0, 25, 200);
         endTime = 975;
+      case 11:
+        addSpawn(12, 2, 0, 25, 200);
+        addSpawn(11, 3, 0, 40, 200);
+        endTime = 600;
     }
   }
   
