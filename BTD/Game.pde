@@ -35,7 +35,7 @@ public class Game {
     startBattle = new Button("START BATTLE", width - 180, height - 100, 130, 50, 16, color(0, 220, 0), true);
     sell = new Button("SELL", width - 55, height - 100, 100, 50, 40, color(255, 170, 0), false);
     buyDartTower = new BuyButton("Dart", "$170", width - 187.5, 155, 100, 100, 12, 24, BLUE, true, dartImage);
-    buyIceTower = new BuyButton("Ice", "$255", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
+    buyIceTower = new BuyButton("Ice", "$360", width - 62.5, 155, 100, 100, 12, 24, BLUE, true, iceImage);
     buyCannon = new BuyButton("Cannon", "$585", width - 187.5, 260, 100, 100, 12, 24, BLUE, true, cannonImage);
     buyLongRangeDarts = new BuyButton("Long Range", "$90", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, longRangeDartsImage);
     buyPiercingDarts = new BuyButton("Piercing", "$205", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, piercingDartsImage);
@@ -387,7 +387,7 @@ public class Game {
       placing = true;
       placeTower = 0;
     }
-    else if(buyIceTower.getHovering() && money >= 255) {
+    else if(buyIceTower.getHovering() && money >= 360) {
       println("bought ice tower");
       placing = true;
       placeTower = 1;
@@ -441,7 +441,7 @@ public class Game {
           break;
         case 1: // ice tower
           towers.add(new IceTower(mouseX, mouseY));
-          money -= 255;
+          money -= 360;
           break;
         case 2: // cannon
           towers.add(new Cannon(mouseX, mouseY));
