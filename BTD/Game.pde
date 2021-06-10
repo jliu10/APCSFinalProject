@@ -11,7 +11,7 @@ public class Game {
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
-  ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades;
+  ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades, tackTowerUpgrades;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
@@ -19,6 +19,7 @@ public class Game {
     buttonQ = new ArrayDeque<Button>();
     dartTowerUpgrades = new ArrayDeque<Button>();
     cannonUpgrades = new ArrayDeque<Button>();
+    tackTowerUpgrades = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     spawns = new ArrayList<int[]>();
     speed = 1;
@@ -41,6 +42,8 @@ public class Game {
     buyExtraRangeBombs = new BuyButton("Extra Range", "$200", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, extraRangeBombsImage);
     buyBiggerBombs = new BuyButton("Bigger Bombs", "$350", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, biggerBombsImage);
     buyTackTower = new BuyButton("Tack", "$400", width - 62.5, 260, 100, 100, 12, 24, BLUE, true, tackImage);
+    buyFasterShooting = new BuyButton("Faster Shooting", "$250", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, fasterShootingImage);
+    buyExtraRangeTacks = new BuyButton("Extra Range", "$150", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, extraRangeTacksImage);
     
     lives = 100;
     money = 9999;
@@ -56,6 +59,9 @@ public class Game {
     
     cannonUpgrades.add(buyExtraRangeBombs);
     cannonUpgrades.add(buyBiggerBombs);
+    
+    tackTowerUpgrades.add(buyFasterShooting);
+    tackTowerUpgrades.add(buyExtraRangeTacks);
   }
   
   void run() {    
@@ -231,7 +237,6 @@ public class Game {
         case "CANNON": // cannon
           textSize(14);
           text("BOUGHT\nEXTRA RANGE", width - 187.5, 148);
-          textSize(14);
           text("BOUGHT\nBIGGER BOMBS", width - 62.5, 148);
           for(Button b : cannonUpgrades) {
             if(!b.getActive()) b.toggle();
@@ -240,6 +245,21 @@ public class Game {
             // continue cascade if we end up having more upgrade tiers
           if(selectedTower.getUpgrades()[1] > 0) buyBiggerBombs.toggle();
           for(Button b : cannonUpgrades) {
+            b.display();
+          }
+          break;
+        case "TACK": // tack tower
+          textSize(16);
+          text("BOUGHT\nFASTER\nSHOOTING", width - 187.5, 136);
+          textSize(14);
+          text("BOUGHT\nEXTRA RANGE", width - 62.5, 148);
+          for(Button b : tackTowerUpgrades) {
+            if(!b.getActive()) b.toggle();
+          }
+          if(selectedTower.getUpgrades()[0] > 0) buyFasterShooting.toggle();
+            // continue cascade if we end up having more upgrade tiers
+          if(selectedTower.getUpgrades()[1] > 0) buyExtraRangeTacks.toggle();
+          for(Button b : tackTowerUpgrades) {
             b.display();
           }
           break;
@@ -399,6 +419,18 @@ public class Game {
       if(selectedTower != null) selectedTower.upgrade(1);
       money -= 350;
       buyBiggerBombs.toggle();
+    }
+    else if(buyFasterShooting.getHovering() && buyFasterShooting.getActive() && money >= 250) {
+      if(selectedTower != null) selectedTower.upgrade(0);
+      money -= 250;
+      buyFasterShooting.toggle();
+      println("faster shooting");
+    }
+    else if(buyExtraRangeTacks.getHovering() && buyExtraRangeTacks.getActive() && money >= 150) {
+      if(selectedTower != null) selectedTower.upgrade(1);
+      money -= 150;
+      buyExtraRangeTacks.toggle();
+      println("extra range");
     }
     else if(placing && valid && mouseX < width - 250) {
       placing = false;
