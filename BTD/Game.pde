@@ -11,7 +11,7 @@ public class Game {
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
-  ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades, tackTowerUpgrades;
+  ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades, tackTowerUpgrades, iceTowerUpgrades;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
@@ -20,6 +20,7 @@ public class Game {
     dartTowerUpgrades = new ArrayDeque<Button>();
     cannonUpgrades = new ArrayDeque<Button>();
     tackTowerUpgrades = new ArrayDeque<Button>();
+    iceTowerUpgrades = new ArrayDeque<Button>();
     gameTrack = new Track(map);
     spawns = new ArrayList<int[]>();
     speed = 1;
@@ -44,6 +45,8 @@ public class Game {
     buyTackTower = new BuyButton("Tack", "$400", width - 62.5, 260, 100, 100, 12, 24, BLUE, true, tackImage);
     buyFasterShooting = new BuyButton("Faster Shooting", "$250", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, fasterShootingImage);
     buyExtraRangeTacks = new BuyButton("Extra Range", "$150", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, extraRangeTacksImage);
+    buyWideFreezeRadius = new BuyButton("Wide Radius", "$300", width - 187.5, 155, 100, 100, 12, 24, BLUE, false, wideFreezeRadiusImage);
+    buyLongFreezeTime = new BuyButton("Long Freeze", "$450", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, longFreezeTimeImage);
     
     lives = 100;
     money = 9999;
@@ -62,6 +65,9 @@ public class Game {
     
     tackTowerUpgrades.add(buyFasterShooting);
     tackTowerUpgrades.add(buyExtraRangeTacks);
+    
+    iceTowerUpgrades.add(buyWideFreezeRadius);
+    iceTowerUpgrades.add(buyLongFreezeTime);
   }
   
   void run() {    
@@ -143,15 +149,6 @@ public class Game {
       
     }
     else {
-      /*
-      switch(selectedTower.getType()) {
-        case 0: // dart tower
-          for(Button b : dartTowerUpgrades) {
-            if(b.getActive()) b.toggle();
-          }
-          break;
-      }
-      */
       for(Button b : buttonQ) {
         if(!b.getActive()) b.toggle();
       }
@@ -260,6 +257,20 @@ public class Game {
             // continue cascade if we end up having more upgrade tiers
           if(selectedTower.getUpgrades()[1] > 0) buyExtraRangeTacks.toggle();
           for(Button b : tackTowerUpgrades) {
+            b.display();
+          }
+          break;
+        case "ICE": // ice tower
+          textSize(14);
+          text("BOUGHT\nWIDE RADIUS", width - 187.5, 148);
+          text("BOUGHT\nLONG FREEZE", width - 62.5, 148);
+          for(Button b : iceTowerUpgrades) {
+            if(!b.getActive()) b.toggle();
+          }
+          if(selectedTower.getUpgrades()[0] > 0) buyWideFreezeRadius.toggle();
+            // continue cascade if we end up having more upgrade tiers
+          if(selectedTower.getUpgrades()[1] > 0) buyLongFreezeTime.toggle();
+          for(Button b : iceTowerUpgrades) {
             b.display();
           }
           break;
@@ -424,13 +435,23 @@ public class Game {
       if(selectedTower != null) selectedTower.upgrade(0);
       money -= 250;
       buyFasterShooting.toggle();
-      println("faster shooting");
     }
     else if(buyExtraRangeTacks.getHovering() && buyExtraRangeTacks.getActive() && money >= 150) {
       if(selectedTower != null) selectedTower.upgrade(1);
       money -= 150;
       buyExtraRangeTacks.toggle();
-      println("extra range");
+    }
+    else if(buyWideFreezeRadius.getHovering() && buyWideFreezeRadius.getActive() && money >= 300) {
+      if(selectedTower != null) selectedTower.upgrade(0);
+      money -= 300;
+      buyWideFreezeRadius.toggle();
+      println("wide radius");
+    }
+    else if(buyLongFreezeTime.getHovering() && buyLongFreezeTime.getActive() && money >= 450) {
+      if(selectedTower != null) selectedTower.upgrade(1);
+      money -= 450;
+      buyLongFreezeTime.toggle();
+      println("long freeze");
     }
     else if(placing && valid && mouseX < width - 250) {
       placing = false;
