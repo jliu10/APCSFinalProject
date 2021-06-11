@@ -1,6 +1,6 @@
 int page, difficulty, map;
 Game currentGame;
-Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, buyCannon, sell, buyLongRangeDarts, buyPiercingDarts, buyExtraRangeBombs, buyBiggerBombs, buyTackTower, buyFasterShooting, buyExtraRangeTacks, buyLongFreezeTime, buyWideFreezeRadius;
+Button quit, pause, resume, quitYes, quitNo, map1, mainMenu, play, instructions, startBattle, buyDartTower, buyIceTower, buyCannon, sell, buyLongRangeDarts, buyPiercingDarts, buyExtraRangeBombs, buyBiggerBombs, buyTackTower, buyFasterShooting, buyExtraRangeTacks, buyLongFreezeTime, buyWideFreezeRadius, map2;
 ArrayList<Button> gameButtons = new ArrayList<Button>();
 ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
@@ -16,9 +16,11 @@ void setup() {
   size(1050, 700);
   difficulty = 0;
   map = 0;
-  map1 = new Button("MAP1", width/2, height/2, 300, 100, 80, BLUE, false); // change to flase
+  map1 = new Button("GRASSY", width/2, height/2 - 60, 300, 100, 80, BLUE, false);
+  map2 = new Button("SNOWY", width/2, height/2 + 60, 300, 100, 80, BLUE, false);
   mainMenu = new Button("BACK", 110, 60, 200, 100, 80, BLUE, false); // change to false
   mapSelectionButtons.add(map1);
+  mapSelectionButtons.add(map2);
   mapSelectionButtons.add(mainMenu);
   instructionsButtons.add(mainMenu);
   play = new Button("PLAY", width/2, height/2, 300, 100, 80, color(0, 220, 0), true);
@@ -86,6 +88,7 @@ void draw() {
     case 2: // map/difficulty selection
       background(BLUE);
       map1.display();
+      map2.display();
       mainMenu.display();
       break;
     case 3: // game
@@ -97,7 +100,7 @@ void draw() {
 void mouseClicked() {
   if(mouseButton == 37) {
     switch(page) {
-      case 0:
+      case 0: // main menu
         if(play.getHovering()) {
           for(Button b : mapSelectionButtons) {
             b.toggle();
@@ -117,7 +120,7 @@ void mouseClicked() {
           page = 1;
         }
         break;
-      case 1:
+      case 1: // instructions
         if(mainMenu.getHovering()) {
           for(Button b : instructionsButtons) {
             b.toggle();
@@ -128,12 +131,20 @@ void mouseClicked() {
           page = 0;
         }
         break;
-      case 2:
+      case 2: // map selection
         if(map1.getHovering()) {
           for(Button b : mapSelectionButtons) {
             b.toggle();
           }
           map = 0;
+          currentGame = new Game(difficulty, map);
+          page = 3;
+        }
+        else if(map2.getHovering()) {
+          for(Button b : mapSelectionButtons) {
+            b.toggle();
+          }
+          map = 1;
           currentGame = new Game(difficulty, map);
           page = 3;
         }
@@ -147,7 +158,7 @@ void mouseClicked() {
           page = 0;
         }
         break;
-      case 3:
+      case 3: // game
         currentGame.leftMB();
         break;
     }
