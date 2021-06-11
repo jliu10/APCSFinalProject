@@ -330,7 +330,7 @@ public class Game {
     
     fill(0);
     textSize(24);
-    text("Bloon Count: " + bloons.size() + "\nTime: " + currentTime, 0, 20);
+    text("Bloon Count: " + bloons.size() + "\nTime: " + currentTime + "\nSpeed: " + speed, 0, 20);
   }
   
   boolean isDone() {
@@ -501,6 +501,10 @@ public class Game {
   
   void leftPressedFunctions() {
     speedSlider.function();
+  }
+  
+  void leftReleasedFunctions() {
+    speed = speedSlider.getValue();
   }
   
   ArrayList<Bloon> getBloons() {
