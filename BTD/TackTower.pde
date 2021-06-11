@@ -72,9 +72,9 @@ public class TackTower extends Tower {
   }
   
   void shoot() {
-    if (shootCounter == 0) {
+    if (shootCounter <= 0) {
       for(Bloon b : currentGame.getBloons()) {
-        if (bloonInRange(b) && shootCounter == 0) {
+        if (bloonInRange(b) && shootCounter <= 0) {
           for (int i = 0; i < 8; i++) {
             Tack t = new Tack(position[0], position[1], projectileSpeed, damage, health, 45*i);
             tackList.add(t);
@@ -84,7 +84,7 @@ public class TackTower extends Tower {
       }
     }
     else {
-      shootCounter--;
+      shootCounter -= currentGame.getSpeed();
     }
   }
   

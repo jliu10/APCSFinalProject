@@ -46,7 +46,7 @@ public class IceTower extends Tower{
   }
   void shoot() {
     active = false;
-    if (shootCounter == 0) {
+    if (shootCounter <= 0) {
       for(Bloon b : currentGame.getBloons()) {
         if (bloonInRange(b)) {
           active = true;
@@ -63,7 +63,7 @@ public class IceTower extends Tower{
       }
     }
     else {
-      shootCounter--;
+      shootCounter -= currentGame.getSpeed();
     }
   }
   

@@ -68,9 +68,9 @@ public class DartTower extends Tower {
   }
   
   void shoot() {
-    if (shootCounter == 0) {
+    if (shootCounter <= 0) {
       for(Bloon b : currentGame.getBloons()) {
-        if (bloonInRange(b) && shootCounter == 0) {
+        if (bloonInRange(b) && shootCounter <= 0) {
           Dart d = new Dart(position[0], position[1], b.getPosition()[0], b.getPosition()[1], projectileSpeed, damage, health);
           dartList.add(d);
           shootCounter = shootTime;
@@ -78,7 +78,7 @@ public class DartTower extends Tower {
       }
     }
     else {
-      shootCounter--;
+      shootCounter -= currentGame.getSpeed();
     }
   }
   

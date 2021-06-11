@@ -1,6 +1,6 @@
 abstract class Tower {
-  int shootTime;
-  int shootCounter;
+  float shootTime;
+  float shootCounter;
   float[] position;
   float range, radius, direction, totalValue, projectileSpeed;
   boolean selected;

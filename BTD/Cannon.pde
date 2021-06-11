@@ -59,9 +59,9 @@ public class Cannon extends Tower {
   }
   
   void shoot() {
-    if (shootCounter == 0) {
+    if (shootCounter <= 0) {
       for(Bloon b : currentGame.getBloons()) {
-        if (bloonInRange(b) && shootCounter == 0) {
+        if (bloonInRange(b) && shootCounter <= 0) {
           float Xcor = position[0]; float Ycor = position[1];
           float targetX = b.getPosition()[0]; float targetY = b.getPosition()[1];
           float Xdiff = targetX - Xcor; float Ydiff = targetY - Ycor; //changing the direction of the cannon
@@ -81,7 +81,7 @@ public class Cannon extends Tower {
       }
     }
     else {
-      shootCounter--;
+      shootCounter -= currentGame.getSpeed();
     }
   }
 }
