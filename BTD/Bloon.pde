@@ -108,7 +108,7 @@ public class Bloon {
   }
   
   void move() {
-    float jumpSize = speed + 1;
+    float jumpSize = speed * currentGame.getSpeed() + 1;
     float xDiff = pos[0] - currentBlock.getNextBlock().getX();
     float yDiff = pos[1] - currentBlock.getNextBlock().getY();
     if(xDiff*xDiff + yDiff*yDiff <= jumpSize*jumpSize) {
