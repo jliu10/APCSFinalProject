@@ -90,7 +90,14 @@ public class Game {
   
   void run() {    
     // millis() is imprecise, so we have own timer
-    
+    if(lives <= 0) {
+      page = 4; // defeat screen
+      done = true; // attribute done might've been useless
+    }
+    else if(roundNumber >= 12) {
+      page = 5; // victory screen
+      done = true;
+    }
     
     if(currentRound != null && !currentRound.getDone()) {
       
@@ -175,7 +182,6 @@ public class Game {
       }
     }
     
-    if(lives <= 0) done = true;
     display();
   }
   
