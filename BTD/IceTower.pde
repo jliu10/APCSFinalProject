@@ -1,6 +1,7 @@
 public class IceTower extends Tower{
   boolean active; //change animation when active
   int animationTimer;
+  int FreezeTime;
   
   IceTower(float Xcor, float Ycor) {
     position = new float[2];
@@ -10,7 +11,7 @@ public class IceTower extends Tower{
     upgrades[0] = 0; upgrades[1] = 0; //start with no upgrades
     radius = 20; range = 100; direction = 0; //do not need direction for IceTower
     totalValue = 255; projectileSpeed = 0; //no projectiles for IceTower
-    shootTime = 60; shootCounter = 0;
+    shootTime = 60; shootCounter = 0; FreezeTime = 30;
     active = false;
     animationTimer = 0;
     type = "ICE";
@@ -24,7 +25,7 @@ public class IceTower extends Tower{
     }
     switch(upgrades[1]) {
       case 1:
-        // range = 125;
+        FreezeTime = 45;
         break;
     }
     ellipseMode(RADIUS);
@@ -50,7 +51,7 @@ public class IceTower extends Tower{
         if (bloonInRange(b)) {
           active = true;
           if (!b.getFrozen()) {//set all non-frozen bloons in range to frozen
-            b.setFrozen();
+            b.setFrozen(FreezeTime);
           }
         }
       }
