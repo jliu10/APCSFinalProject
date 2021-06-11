@@ -108,9 +108,10 @@ public class Bloon {
   }
   
   void move() {
+    float jumpSize = speed + 1;
     float xDiff = pos[0] - currentBlock.getNextBlock().getX();
     float yDiff = pos[1] - currentBlock.getNextBlock().getY();
-    if(xDiff*xDiff + yDiff*yDiff <= 4) {
+    if(xDiff*xDiff + yDiff*yDiff <= jumpSize*jumpSize) {
       pos[0] = currentBlock.getNextBlock().getX();
       pos[1] = currentBlock.getNextBlock().getY();
       changeToNextBlock();
@@ -134,7 +135,7 @@ public class Bloon {
         else {
           bloonColor = color(227, 0, 0);
         }
-        //speed = 1;
+        speed = 1;
         break;
       case 1: //blue bloon
         if (FreezeCounter > 0) {
@@ -143,7 +144,7 @@ public class Bloon {
         else {
           bloonColor = color(0, 0, 227);
         }
-        //speed = 1.4;
+        speed = 1.4;
         break;
       case 2: //green bloon
         if (FreezeCounter > 0) {
@@ -152,8 +153,16 @@ public class Bloon {
         else {
           bloonColor = color(0, 227, 0);
         }
-        //speed = 1.8;
+        speed = 1.8;
         break;
+      case 3: //yellow bloon
+        if (FreezeCounter > 0) {
+          bloonColor = color(255, 230, 50);
+        }
+        else {
+          bloonColor = color(255, 230, 0);
+        }
+        speed = 3.2;
     }
     move();
     ellipseMode(CENTER);
