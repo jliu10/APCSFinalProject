@@ -12,6 +12,7 @@ public class Game {
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
   ArrayDeque<Button> buttonQ, dartTowerUpgrades, cannonUpgrades, tackTowerUpgrades, iceTowerUpgrades;
+  Slider speedSlider;
   
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
@@ -28,6 +29,7 @@ public class Game {
     difficulty = diff;
     roundNumber = 1;
     
+    speedSlider = new Slider("Speed", width - 350, height - 50, 4, 175);
     quit = new Button("QUIT", width - 55, height - 30, 100, 50, 40, color(184, 46, 0), true);
     quitYes = new Button("Yes", width - 175, height - 30, 80, 50, 40, color(184, 46, 0), false);
     quitNo = new Button("No", width - 70, height - 30, 80, 50, 40, BLUE, false);
@@ -169,6 +171,8 @@ public class Game {
     for(Tower t : towers) {
       t.display();
     }
+    
+    speedSlider.display();
     
     if(placing) {
       if(mouseX < width - 250) {
@@ -493,6 +497,10 @@ public class Game {
         }
       }
     }
+  }
+  
+  void leftPressedFunctions() {
+    speedSlider.function();
   }
   
   ArrayList<Bloon> getBloons() {
