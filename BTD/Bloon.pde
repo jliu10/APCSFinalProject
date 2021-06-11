@@ -98,9 +98,9 @@ public class Bloon {
   void setFreezeCounter(int num) {
     FreezeCounter = num;
   }
-  void setFrozen() {
+  void setFrozen(int FreezeTime) {
     isFrozen = true;
-    FreezeCounter = 30;
+    FreezeCounter = FreezeTime;
     freezeMultiplier = 0;
   }
   boolean getFrozen() {
