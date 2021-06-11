@@ -169,3 +169,7 @@ void mouseWheel(MouseEvent event) {
 void mouseDragged() {
   if(mouseButton == 37) currentGame.leftPressedFunctions();
 }
+
+void mouseReleased() {
+  if(mouseButton == 37) currentGame.leftReleasedFunctions();
+}
