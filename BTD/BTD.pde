@@ -83,6 +83,35 @@ void draw() {
       break;
     case 1: // instructions
       background(BLUE);
+      fill(255);
+      textAlign(CENTER);
+      textSize(36);
+      textLeading(36);
+      text("Objective:\nSurvive the Bloons!", width/2, 80);
+      textSize(24);
+      textLeading(24);
+      text("After choosing a map, you have a selection of towers you can buy and place." +
+        "\n Each tower does something different, but they all help with the goal: stopping" +
+        "\n Bloons from reaching the end of the track! Bloons start to spawn after clicking" +
+        "\n'Start Battle'. Bloons, which come in various types, move along the track to the end." +
+        "\nRed Bloons are totally destroyed when popped, but other Bloons, when popped, release" +
+        "\na Bloon that is one tier below it. Here is what each tower does:", width/2, 180);
+      textAlign(LEFT);
+      textLeading(30);
+      text("- DART TOWER: Shoots darts at a Bloon in range" +
+        "\n- ICE TOWER: Periodically briefly freezes Bloons in range. Frozen" +
+        "\n      Bloons cannot be popped by darts" +
+        "\n- CANNON: Shoots explosive cannonballs at a Bloon in range. The" +
+        "\n      explosions damage Bloons caught in it" +
+        "\n- TACK TOWER: Periodically shoots tacks in 8 directions when a Bloon" +
+        "\n      is in range", 120, 340);
+      textAlign(CENTER);
+      textLeading(24);
+      text("Popping Bloons grants money, which you can spend to buy towers or upgrades for" +
+      "\nexisting towers. Addtionally, you get bonus money after surviing a round. If a Bloon" +
+      "\nreaches the end of the track, you lose life! So spend money wisely, and don't let the" +
+      "\nevil Bloons win!!!", width/2, 560);
+        
       mainMenu.display();
       break;
     case 2: // map/difficulty selection
