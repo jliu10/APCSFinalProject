@@ -161,7 +161,15 @@ public class Game {
   }
   
   void display() {
-    background(153, 227, 79);
+    switch(map) { // background color
+      case 0:
+        background(153, 227, 79);
+        break;
+      case 1:
+        background(0);
+        break;
+    }
+    
     for(Block b : gameTrack.getDeque()) {
       b.display();
     }
