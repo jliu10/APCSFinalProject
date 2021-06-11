@@ -54,7 +54,7 @@ public class Game {
     buyLongFreezeTime = new BuyButton("Long Freeze", "$450", width - 62.5, 155, 100, 100, 12, 24, BLUE, false, longFreezeTimeImage);
     
     lives = 100;
-    money = 9999;
+    money = 650;
     
     buttonQ.add(buyDartTower);
     buttonQ.add(buyIceTower);
@@ -389,10 +389,12 @@ public class Game {
       quitNo.display();
     }
     
+    /*
     fill(0);
     textSize(24);
     text("Bloon Count: " + bloons.size() + "\nTime: " + currentTime + "\nSpeed: " + speed, 0, 20);
-  }
+    */  
+}
   
   boolean isDone() {
     return done;
