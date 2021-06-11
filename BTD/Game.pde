@@ -9,6 +9,7 @@ public class Game {
   ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
   ArrayList<SnowParticle> particles;//for snow animation in winter map
+  ArrayList<GrassBlade> grass;//for grass animation in grassy map
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
@@ -18,7 +19,7 @@ public class Game {
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
     towers = new ArrayList<Tower>();
-    particles = new ArrayList<SnowParticle>();
+    particles = new ArrayList<SnowParticle>(); grass = new ArrayList<GrassBlade>();
     buttonQ = new ArrayDeque<Button>();
     dartTowerUpgrades = new ArrayDeque<Button>();
     cannonUpgrades = new ArrayDeque<Button>();
@@ -73,9 +74,15 @@ public class Game {
     iceTowerUpgrades.add(buyWideFreezeRadius);
     iceTowerUpgrades.add(buyLongFreezeTime);
     
-    if (map == 1) {//snow particle animation
+    if (map == 0) {// grass blade animation
       for (int i = 0; i < 50; i++) {
-        SnowParticle s = new SnowParticle((float)Math.random()+1,(float)Math.random()+1,(float)Math.random()*360,(float)Math.random()*750,(float)Math.random()*700);
+        GrassBlade g = new GrassBlade((float)Math.random()*800,(float)Math.random()*700,(float)Math.random()*0.2+0.2);
+        grass.add(g);
+      }
+    }
+    if (map == 1) {//snow particle animation
+      for (int i = 0; i < 150; i++) {
+        SnowParticle s = new SnowParticle((float)Math.random()+1,(float)Math.random()+1,(float)Math.random()*360,(float)Math.random()*800,(float)Math.random()*700);
         particles.add(s);
       }
     }
@@ -176,6 +183,9 @@ public class Game {
     switch(map) { // background color
       case 0:
         background(153, 227, 79);
+        for (GrassBlade g : grass) {
+          g.display();
+        }
         break;
       case 1:
         background(240,240,245);
