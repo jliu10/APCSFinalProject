@@ -49,7 +49,8 @@ public class CannonBall extends Projectile {
     for (Bloon b : bloonsList) {
       float[] bloonPosition = b.getPosition();
       float xDiff = bloonPosition[0] - position[0]; float yDiff = bloonPosition[1] - position[1];
-      if (xDiff*xDiff + yDiff * yDiff < 1.5*size*size) {
+      float jumpDistance = speed * currentGame.getSpeed() + 1;
+      if (xDiff*xDiff + yDiff * yDiff < jumpDistance * jumpDistance) {
         health -= 1;
         explosionTimer = 20;
         for(Bloon b2 : bloonsList) {

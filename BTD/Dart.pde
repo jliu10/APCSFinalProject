@@ -43,7 +43,8 @@ public class Dart extends Projectile {
     for (Bloon b : bloonsList) {
       float[] bloonPosition = b.getPosition();
       float xDiff = bloonPosition[0] - position[0]; float yDiff = bloonPosition[1] - position[1];
-      if (xDiff*xDiff + yDiff * yDiff < 400) {
+      float jumpDistance = speed * currentGame.getSpeed() + 1;
+      if (xDiff*xDiff + yDiff * yDiff < jumpDistance*jumpDistance) {
         health -= b.getHealth();
         if (!b.getFrozen()) {
           b.bloonPop(damage);
