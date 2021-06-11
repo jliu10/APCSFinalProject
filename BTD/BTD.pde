@@ -6,6 +6,7 @@ ArrayList<Button> mapSelectionButtons = new ArrayList<Button>();
 ArrayList<Button> menuButtons = new ArrayList<Button>();
 ArrayList<Button> instructionsButtons = new ArrayList<Button>();
 PImage dartImage, iceImage, cannonImage, longRangeDartsImage, piercingDartsImage, extraRangeBombsImage, biggerBombsImage, tackImage, fasterShootingImage, extraRangeTacksImage, wideFreezeRadiusImage, longFreezeTimeImage;
+// Slider speedSlider;
 
 color WHITE = color(255);
 color BLACK = color(0);
@@ -163,4 +164,8 @@ void mouseWheel(MouseEvent event) {
       currentGame.scrollFunctions(event.getCount());
       break;
   }
+}
+  
+void mouseDragged() {
+  if(mouseButton == 37) currentGame.leftPressedFunctions();
 }
