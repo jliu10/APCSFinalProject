@@ -8,6 +8,7 @@ public class Game {
   Tower selectedTower;
   ArrayList<Tower> towers;
   //ArrayList<Projectile> projectiles;
+  ArrayList<SnowParticle> particles;//for snow animation in winter map
   ArrayList<Bloon> bloons;
   ArrayList<int[]> spawns; // {bloon type, camo (0 or 1), spawn time}
   Track gameTrack;
@@ -17,6 +18,7 @@ public class Game {
   Game(int diff, int map) {
     bloons = new ArrayList<Bloon>();
     towers = new ArrayList<Tower>();
+    particles = new ArrayList<SnowParticle>();
     buttonQ = new ArrayDeque<Button>();
     dartTowerUpgrades = new ArrayDeque<Button>();
     cannonUpgrades = new ArrayDeque<Button>();
@@ -70,6 +72,13 @@ public class Game {
     
     iceTowerUpgrades.add(buyWideFreezeRadius);
     iceTowerUpgrades.add(buyLongFreezeTime);
+    
+    if (map == 1) {//snow particle animation
+      for (int i = 0; i < 50; i++) {
+        SnowParticle s = new SnowParticle((float)Math.random()+1,(float)Math.random()+1,(float)Math.random()*360,(float)Math.random()*750,(float)Math.random()*700);
+        particles.add(s);
+      }
+    }
   }
   
   void run() {    
@@ -166,7 +175,7 @@ public class Game {
         background(153, 227, 79);
         break;
       case 1:
-        background(0);
+        background(240,240,245);
         break;
     }
     
@@ -179,7 +188,24 @@ public class Game {
     for(Tower t : towers) {
       t.display();
     }
-    
+    if (map == 1) {//snow particle animation
+      int particleAdjustCounter = 0;
+      for (int i = 0; i < particles.size(); i++) {
+        SnowParticle s = particles.get(i);
+        s.display();
+        float Xcor = s.getX(); float Ycor = s.getY();
+        if (Xcor >= 1050 || Xcor <= 0 || Ycor >= 700 || Ycor <= 0) {
+          s = null;
+          particles.remove(i);
+          particleAdjustCounter++;
+          i--;
+        }
+      }
+      for (int i = 0; i < particleAdjustCounter; i++) {
+        SnowParticle s = new SnowParticle((float)Math.random()+1,(float)Math.random()+1,(float)Math.random()*360,(float)Math.random()*750,(float)Math.random()*700);
+        particles.add(s);
+      }
+    }
     speedSlider.display();
     
     if(placing) {
