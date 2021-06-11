@@ -36,4 +36,4 @@ DEV LOG:
 - Srinath 2021-06-04: Created Tack class and TackTower class; Added popping animation for when bloon is popped
 - Srinath 2021-06-07: Fixed piercing upgrade issue in DartTower class
 - Justin 2021-06-08: Added more rounds
-- Justin 2021-06-10: Added Yellow Bloon and upgrades to more towers
+- Justin 2021-06-10: Added Yellow Bloon and upgrades to more towers; added game speed slider
