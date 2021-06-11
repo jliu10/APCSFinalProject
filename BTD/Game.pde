@@ -74,11 +74,19 @@ public class Game {
     iceTowerUpgrades.add(buyWideFreezeRadius);
     iceTowerUpgrades.add(buyLongFreezeTime);
     
-    if (map == 0) {// grass blade animation
-      for (int i = 0; i < 50; i++) {
+     if (map == 0) {// grass blade animation
+      for (int i = 0; i < 1000; i++) {
         GrassBlade g = new GrassBlade((float)Math.random()*800,(float)Math.random()*700,(float)Math.random()*0.2+0.2);
         grass.add(g);
       }
+      //for (int Xcor = 0; Xcor < 800; Xcor++) {
+      //  for (int Ycor = 0; Ycor < 710; Ycor++) {
+      //    if (Xcor%6 == 0 && Ycor%20 == 3) {
+      //      GrassBlade g = new GrassBlade(Xcor, Ycor, (float)Math.random()*0.1+0.3);
+      //      grass.add(g);
+      //    }
+      //  }
+      //}
     }
     if (map == 1) {//snow particle animation
       for (int i = 0; i < 150; i++) {
