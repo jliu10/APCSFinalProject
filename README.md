@@ -37,3 +37,4 @@ DEV LOG:
 - Srinath 2021-06-07: Fixed piercing upgrade issue in DartTower class
 - Justin 2021-06-08: Added more rounds
 - Justin 2021-06-10: Added Yellow Bloon and upgrades to more towers; added game speed slider
+- Justin 2021-06-10: Added Longer Freeze upgrade for IceTower; fixed speed issues with bloon motion and tower fire rates
