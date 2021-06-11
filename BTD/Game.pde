@@ -75,7 +75,7 @@ public class Game {
     iceTowerUpgrades.add(buyLongFreezeTime);
     
      if (map == 0) {// grass blade animation
-      for (int i = 0; i < 1000; i++) {
+      for (int i = 0; i < 300; i++) {
         GrassBlade g = new GrassBlade((float)Math.random()*800,(float)Math.random()*700,(float)Math.random()*0.2+0.2);
         grass.add(g);
       }
