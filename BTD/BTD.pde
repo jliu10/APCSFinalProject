@@ -29,7 +29,7 @@ void setup() {
   menuButtons.add(instructions);
   
   //if page is 0 then main menu, 1 is instructions, 2 is map selection
-  page = 0;//page 3 is the first map/game
+  page = 0;
   currentGame = new Game(0, 0);
   
   gameButtons.add(quit);
@@ -122,6 +122,26 @@ void draw() {
       break;
     case 3: // game
       currentGame.run();
+      break;
+    case 4: // defeat screen
+      background(30);
+      fill(200, 0, 0);
+      textAlign(CENTER);
+      textSize(36);
+      text("D E F E A T", width/2, 300);
+      fill(255);
+      textSize(24);
+      text("You died to balloons. Bruh.", width/2, 400);
+      break;
+    case 5: // victory screen
+      background(0, 200, 0);
+      fill(255, 238, 0);
+      textAlign(CENTER);
+      textSize(36);
+      text("V I C T O R Y", width/2, 300);
+      fill(255);
+      textSize(24);
+      text("You won!!!!!!!", width/2, 400);
       break;
   }
 }
