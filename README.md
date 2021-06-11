@@ -40,3 +40,4 @@ DEV LOG:
 - Justin 2021-06-10: Added Longer Freeze upgrade for IceTower; fixed speed issues with bloon motion and tower fire rates; added speed-adjusting slider; added
       victory & defeat screens
 - Srinath 2021-06-10: Added a snowy map; implemented Long Freeze Time upgrade; added grass to map1; fixed bloon motion to work with faster speeds
+- Justin 2021-06-11: Fixed certain images not showing
