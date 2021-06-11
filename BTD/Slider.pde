@@ -10,6 +10,7 @@ public class Slider {
     pos = new float[]{x, y};
     // value = 1;
     knobX = x;
+    value = 1;
   }
   
   void function() {
@@ -39,7 +40,7 @@ public class Slider {
     textAlign(CENTER);
     textSize(12);
     text("Speed", pos[0], pos[1] - 8);
-    text("" + value, pos[0], pos[1] + 16);
+    text(nf(value, 1, 2), pos[0], pos[1] + 16);
   }
   
   float getValue() {
