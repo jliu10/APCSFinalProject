@@ -88,10 +88,13 @@ public class Game {
     if(currentRound != null && !currentRound.getDone()) {
       
       if(counter > 0 && speed != 0) {
-      counter -= 1;
-      currentTime += 1;
+        counter -= 1;
       }
-      else counter = (int)(1000 * (1/speed));
+      else {
+        counter = (int)(1/speed * 4);
+        if(counter < 0) counter = 1;
+        currentTime += 1;
+      }
       currentRound.run();
     }
     
@@ -423,7 +426,7 @@ public class Game {
     else if(startBattle.getActive() && startBattle.getHovering()) {
       println("battle started");
       currentTime = 0;
-      counter = 1000;
+      counter = 0;
       currentRound = new Round(roundNumber);
       startBattle.toggle();
     }
